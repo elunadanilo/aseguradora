@@ -1,0 +1,88 @@
+﻿@using Aseguradora.Models
+@model AseguradoraModel
+@{
+    ViewBag.Title = "Edit";
+}
+
+<br />
+<div class="card">
+    <div class="card-header">
+        Editar Aseguradora
+    </div>
+    <div class="card-body">
+        @using (Html.BeginForm("Edit", "Aseguradora", FormMethod.Post, new { @id = "FrmEditarAseguradora" }))
+        {
+            <div class="row">
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    @Html.LabelFor(p => p.IdAseguradora)
+                    @Html.TextBoxFor(p => p.IdAseguradora, new { @class = "form-control ", @readOnly = true })
+                    @Html.ValidationMessage("IdAseguradora", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    @Html.LabelFor(p => p.Nombre)
+                    @Html.TextBoxFor(p => p.Nombre, new { @class = "form-control obligatorio" })
+                    @Html.ValidationMessage("Nombre", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    @Html.LabelFor(p => p.Departamento)
+                    @Html.TextBoxFor(p => p.Departamento, new { @class = "form-control obligatorio" })
+                    @Html.ValidationMessage("Departamento", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    @Html.LabelFor(p => p.Municipio)
+                    @Html.TextBoxFor(p => p.Municipio, new { @class = "form-control obligatorio" })
+                    @Html.ValidationMessage("Municipio", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    @Html.LabelFor(p => p.Direccion)
+                    @Html.TextBoxFor(p => p.Direccion, new { @class = "form-control obligatorio" })
+                    @Html.ValidationMessage("Direccion", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    @Html.LabelFor(p => p.NIT)
+                    @Html.TextBoxFor(p => p.NIT, new { @class = "form-control obligatorio" })
+                    @Html.ValidationMessage("NIT", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    @Html.LabelFor(p => p.Telefono)
+                    @Html.TextBoxFor(p => p.Telefono, new { @class = "form-control obligatorio" })
+                    @Html.ValidationMessage("Telefono", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    <br />
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                        Aceptar
+                    </button>
+                    @Html.ActionLink("Regresar", "Index", "Aseguradora", null, new { @class = "btn btn-danger" })
+                </div>
+            </div>
+        }
+
+
+    </div>
+</div>
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Desea guardar los cambios?</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div style="padding:1em">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" onclick="Editar()" class="btn btn-info">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function Editar() {
+        var FrmEditarAseguradora = document.getElementById("FrmEditarAseguradora");
+        FrmEditarAseguradora.submit();
+    }
+</script>
+

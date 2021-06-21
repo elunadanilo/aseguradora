@@ -1,0 +1,111 @@
+﻿@using Aseguradora.Models
+@model List<AseguradoraModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Listado de Aseguradoras</h2>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        
+    </ol>
+</nav>
+<br />
+<div class="table-responsive">
+    <table class="table table-bordered table-hover table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>
+                    @Html.LabelFor(p => Model[0].IdAseguradora)
+                </th>
+                <th>
+                    @Html.LabelFor(p => Model[0].Nombre)
+                </th>
+                <th>
+                    @Html.LabelFor(p => Model[0].Departamento)
+                </th>
+                <th>
+                    @Html.LabelFor(p => Model[0].Municipio)
+                </th>
+                <th>
+                    @Html.LabelFor(p => Model[0].Direccion)
+                </th>
+                <th>
+                    @Html.LabelFor(p => Model[0].NIT)
+                </th>
+                <th>
+                    @Html.LabelFor(p => Model[0].Telefono)
+                </th>
+                <th>
+                    Operaciones
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdAseguradora)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Departamento)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Municipio)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Direccion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NIT)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Telefono)
+                    </td>
+                    <td>
+                        @Html.ActionLink(" ", "Edit", "Aseguradora", new { id = item.IdAseguradora }, new { @class = "fas fa-edit btn btn-primary" })
+                        @*@Html.ActionLink(" ", "Delete", "Aseguradora", new { id = item.IdAseguradora }, new { @class = "fas fa-trash-alt btn btn-danger" })*@
+                        <button type="button" onclick="mostrarPopup(@item.IdAseguradora)" class="fas fa-trash-alt btn btn-danger btn btn-danger" data-toggle="modal" data-target="#myModal"></button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    </div>
+<br />
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">@Html.ActionLink("Agregar Aseguradora", "add", "Aseguradora", null, new { @class = "btn btn-primary" })</li>
+    </ol>
+</nav>
+    @using (Html.BeginForm("Delete", "Aseguradora", FormMethod.Post, new { @id = "frmEliminar" }))
+    {
+        @Html.Hidden("IdAseguradora");
+    }
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Desea guardar los cambios?</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div style="padding:1em">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" onclick="Eliminar()" class="btn btn-info">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function Eliminar() {
+            var frmEliminar = document.getElementById("frmEliminar");
+            frmEliminar.submit();
+        }
+        function mostrarPopup(Id) {
+            document.getElementById("IdAseguradora").value = Id;
+        }
+    </script>

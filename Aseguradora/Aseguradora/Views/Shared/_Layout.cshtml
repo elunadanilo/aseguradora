@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/fontawesome/css/all.css" rel="stylesheet" />
+    <style>
+        .obligatorio {
+            background-color: antiquewhite !important;
+        }
+
+        .opcional {
+            background-color: lightgray !important;
+        }
+
+        .despliegue {
+            background-color: #bde0b3 !important;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                @Html.ActionLink("Inicio", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </li>
+            <li class="nav-item">
+                @Html.ActionLink("Cliente", "Index", "Cliente", new { area = "" }, new { @class = "navbar-brand" })
+            </li>
+            <li class="nav-item">
+                @Html.ActionLink("Marca", "Index", "Marca", new { area = "" }, new { @class = "navbar-brand" })
+            </li>
+            <li class="nav-item">
+                @Html.ActionLink("FormaDePago", "Index", "FormaDePago", new { area = "" }, new { @class = "navbar-brand" })
+            </li>
+            <li class="nav-item">
+                @Html.ActionLink("TipoVehiculo", "Index", "TipoVehiculo", new { area = "" }, new { @class = "navbar-brand" })
+            </li>
+            <li class="nav-item">
+                @Html.ActionLink("Aseguradora", "Index", "Aseguradora", new { area = "" }, new { @class = "navbar-brand" })
+            </li>
+            <li class="nav-item">
+                @Html.ActionLink("Producto", "Index", "Producto", new { area = "" }, new { @class = "navbar-brand" })
+            </li>
+            <li class="nav-item">
+                @Html.ActionLink("TipoProducto", "Index", "TipoProducto", new { area = "" }, new { @class = "navbar-brand" })
+            </li>
+            <li class="nav-item">
+                @Html.ActionLink("Acerca de", "About", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </li>
+            <li class="nav-item">
+                @Html.ActionLink("Contacto", "Contact", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </li>
+        </ul>
+    </nav>
+    <div class="body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
+        </footer>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @if (IsSectionDefined("scripts"))
+    {
+        RenderSection("script");
+    }
+
+</body>
+</html>

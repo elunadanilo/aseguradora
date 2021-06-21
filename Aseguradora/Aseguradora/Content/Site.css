@@ -1,0 +1,32 @@
+﻿body {
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.container {
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+}
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+.obligatorio {
+    background-color: burlywood !important;
+}
+
+.opcional {
+    background-color: lightgray !important;
+}
+
+.despliegue {
+    background-color: lightgreen !important;
+}

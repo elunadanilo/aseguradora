@@ -1,0 +1,43 @@
+﻿@using Aseguradora.Models
+@model ProductoModel
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+<div class="row">
+    <div class="col-md-6">
+        @using (Html.BeginForm("Edit", "Producto", FormMethod.Post, new { @id = "FrmEditarProducto" }))
+        {
+            <div>
+                @Html.LabelFor(p => p.IdAseguradora)
+                @Html.TextBoxFor(p => p.IdAseguradora, new { @class = "form-control", @readOnly = true })
+                @Html.ValidationMessage("IdAseguradora", new { @class = "text-danger" })
+            </div>
+            <div>
+                @Html.LabelFor(p => p.IdProducto)
+                @Html.TextBoxFor(p => p.IdProducto, new { @class = "form-control", @readOnly = true })
+                @Html.ValidationMessage("IdProducto", new { @class = "text-danger" })
+            </div>
+            <div>
+                @Html.LabelFor(p => p.Descripcion)
+                @Html.TextBoxFor(p => p.Descripcion, new { @class = "form-control obligatorio" })
+                @Html.ValidationMessage("Descripcion", new { @class = "text-danger" })
+            </div>
+            <br />
+            <div style="margin:auto">
+                <button type="button" onclick="Editar()" class="btn btn-info">Aceptar</button>
+                @Html.ActionLink("Regresar", "Index", "Producto", null, new { @class = "btn btn-danger" })
+            </div>
+        }
+
+    </div>
+</div>
+
+<script>
+    function Editar() {
+        var FrmEditarProducto = document.getElementById("FrmEditarProducto");
+        FrmEditarProducto.submit();
+    }
+</script>

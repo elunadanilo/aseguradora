@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DbAseguradoraModelStoreContainer" CdmEntityContainer="DbAseguradoraEntities">
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="DbAseguradoraModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TblAseguradora">
+      <EntityTypeMapping TypeName="DbAseguradoraModel.TblAseguradora">
+        <MappingFragment StoreEntitySet="TblAseguradora">
+          <ScalarProperty Name="IdAseguradora" ColumnName="IdAseguradora" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Departamento" ColumnName="Departamento" />
+          <ScalarProperty Name="Municipio" ColumnName="Municipio" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="NIT" ColumnName="NIT" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TblCliente">
+      <EntityTypeMapping TypeName="DbAseguradoraModel.TblCliente">
+        <MappingFragment StoreEntitySet="TblCliente">
+          <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+          <ScalarProperty Name="PrimerNombre" ColumnName="PrimerNombre" />
+          <ScalarProperty Name="SegundoNombre" ColumnName="SegundoNombre" />
+          <ScalarProperty Name="PrimerApellido" ColumnName="PrimerApellido" />
+          <ScalarProperty Name="SegundoApellido" ColumnName="SegundoApellido" />
+          <ScalarProperty Name="ApellidoCasada" ColumnName="ApellidoCasada" />
+          <ScalarProperty Name="Departamento" ColumnName="Departamento" />
+          <ScalarProperty Name="Municipio" ColumnName="Municipio" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="TelefonoSecundario" ColumnName="TelefonoSecundario" />
+          <ScalarProperty Name="TelefonoCelular" ColumnName="TelefonoCelular" />
+          <ScalarProperty Name="NIT" ColumnName="NIT" />
+          <ScalarProperty Name="DPI" ColumnName="DPI" />
+          <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
+          <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+          <ScalarProperty Name="ProfesionUOficio" ColumnName="ProfesionUOficio" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TblFormaDePago">
+      <EntityTypeMapping TypeName="DbAseguradoraModel.TblFormaDePago">
+        <MappingFragment StoreEntitySet="TblFormaDePago">
+          <ScalarProperty Name="IdFormaDePago" ColumnName="IdFormaDePago" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TblMarca">
+      <EntityTypeMapping TypeName="DbAseguradoraModel.TblMarca">
+        <MappingFragment StoreEntitySet="TblMarca">
+          <ScalarProperty Name="IdMarca" ColumnName="IdMarca" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TblMovimientos">
+      <EntityTypeMapping TypeName="DbAseguradoraModel.TblMovimientos">
+        <MappingFragment StoreEntitySet="TblMovimientos">
+          <ScalarProperty Name="IdMovimiento" ColumnName="IdMovimiento" />
+          <ScalarProperty Name="IdProductoCliente" ColumnName="IdProductoCliente" />
+          <ScalarProperty Name="Documento" ColumnName="Documento" />
+          <ScalarProperty Name="Valor" ColumnName="Valor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TblProducto">
+      <EntityTypeMapping TypeName="DbAseguradoraModel.TblProducto">
+        <MappingFragment StoreEntitySet="TblProducto">
+          <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+          <ScalarProperty Name="IdAseguradora" ColumnName="IdAseguradora" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TblProductoCliente">
+      <EntityTypeMapping TypeName="DbAseguradoraModel.TblProductoCliente">
+        <MappingFragment StoreEntitySet="TblProductoCliente">
+          <ScalarProperty Name="IdProductoCliente" ColumnName="IdProductoCliente" />
+          <ScalarProperty Name="IdTipoProducto" ColumnName="IdTipoProducto" />
+          <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+          <ScalarProperty Name="IdFormaDePago" ColumnName="IdFormaDePago" />
+          <ScalarProperty Name="DocumentoPoliza" ColumnName="DocumentoPoliza" />
+          <ScalarProperty Name="FechaInicial" ColumnName="FechaInicial" />
+          <ScalarProperty Name="FechaFinal" ColumnName="FechaFinal" />
+          <ScalarProperty Name="ValorGeneral" ColumnName="ValorGeneral" />
+          <ScalarProperty Name="ValorPoliza" ColumnName="ValorPoliza" />
+          <ScalarProperty Name="ValorActual" ColumnName="ValorActual" />
+          <ScalarProperty Name="PrimaAnual" ColumnName="PrimaAnual" />
+          <ScalarProperty Name="PrimaNeta" ColumnName="PrimaNeta" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TblTipoProducto">
+      <EntityTypeMapping TypeName="DbAseguradoraModel.TblTipoProducto">
+        <MappingFragment StoreEntitySet="TblTipoProducto">
+          <ScalarProperty Name="IdTipoProducto" ColumnName="IdTipoProducto" />
+          <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TblTipoVehiculo">
+      <EntityTypeMapping TypeName="DbAseguradoraModel.TblTipoVehiculo">
+        <MappingFragment StoreEntitySet="TblTipoVehiculo">
+          <ScalarProperty Name="IdTipoVehiculo" ColumnName="IdTipoVehiculo" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TblVehiculo">
+      <EntityTypeMapping TypeName="DbAseguradoraModel.TblVehiculo">
+        <MappingFragment StoreEntitySet="TblVehiculo">
+          <ScalarProperty Name="IdVehiculo" ColumnName="IdVehiculo" />
+          <ScalarProperty Name="IdMarca" ColumnName="IdMarca" />
+          <ScalarProperty Name="IdTipoVehiculo" ColumnName="IdTipoVehiculo" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="NumeroDePuertas" ColumnName="NumeroDePuertas" />
+          <ScalarProperty Name="NumeroDeLlantas" ColumnName="NumeroDeLlantas" />
+          <ScalarProperty Name="NumeroDeAsientos" ColumnName="NumeroDeAsientos" />
+          <ScalarProperty Name="Motor" ColumnName="Motor" />
+          <ScalarProperty Name="Cilindros" ColumnName="Cilindros" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TblVehiculoCliente">
+      <EntityTypeMapping TypeName="DbAseguradoraModel.TblVehiculoCliente">
+        <MappingFragment StoreEntitySet="TblVehiculoCliente">
+          <ScalarProperty Name="IdVehiculoCliente" ColumnName="IdVehiculoCliente" />
+          <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+          <ScalarProperty Name="IdVehiculo" ColumnName="IdVehiculo" />
+          <ScalarProperty Name="Documento" ColumnName="Documento" />
+          <ScalarProperty Name="Color" ColumnName="Color" />
+          <ScalarProperty Name="VIN" ColumnName="VIN" />
+          <ScalarProperty Name="NumeroDePlaca" ColumnName="NumeroDePlaca" />
+          <ScalarProperty Name="Anio" ColumnName="Anio" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+          <ScalarProperty Name="Valor" ColumnName="Valor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TblDepartamento">
+      <EntityTypeMapping TypeName="DbAseguradoraModel.TblDepartamento">
+        <MappingFragment StoreEntitySet="TblDepartamento">
+          <ScalarProperty Name="Departamento" ColumnName="Departamento" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TblMunicipio">
+      <EntityTypeMapping TypeName="DbAseguradoraModel.TblMunicipio">
+        <MappingFragment StoreEntitySet="TblMunicipio">
+          <ScalarProperty Name="Departamento" ColumnName="Departamento" />
+          <ScalarProperty Name="Municipio" ColumnName="Municipio" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

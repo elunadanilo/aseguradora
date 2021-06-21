@@ -1,0 +1,47 @@
+﻿@using Aseguradora.Models
+@model  TipoVehiculoModel
+@{
+    ViewBag.Title = "Add";
+}
+
+<h2>Agregar</h2>
+
+<div class="row">
+    <div class="col-md-6">
+        @using (Html.BeginForm("Add", "TipoVehiculo", FormMethod.Post, new { @id = "FrmAgregar" }))
+        {
+            <div>
+                @Html.LabelFor(p => p.Descripcion)
+                @Html.TextBoxFor(p => p.Descripcion, new { @class = "form-control obligatorio" })
+                @Html.ValidationMessage("Descripcion", new { @class = "text-danger" })
+            </div>
+            <br />
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                Aceptar
+            </button>
+        }
+
+    </div>
+</div>
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Desea guardar los cambios?</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div style="padding:1em">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" onclick="Agregar()" class="btn btn-info">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function Agregar() {
+        var FrmAgregar = document.getElementById("FrmAgregar");
+        FrmAgregar.submit();
+    }
+</script>
+

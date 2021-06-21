@@ -1,0 +1,206 @@
+﻿@using Aseguradora.Models
+@model List<ClienteModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Listado de Clientes</h2>
+@using (Html.BeginForm("Index", "Cliente", FormMethod.Post, new { @id = "FrmBusquedaCliente" }))
+{
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active" aria-current="page">
+                <div class="row">
+                    <div class="col-sm-3 col-md-3 col-lg-3">
+                        @Html.Label("Nombre Cliente")
+                        @Html.TextBox("PrimerNombre")
+                    </div>
+                    <div class="col-sm-3 col-md-3 col-lg-3">
+                        @Html.Label("Primer Apellido")
+                        @Html.TextBox("PrimerApellido")
+                    </div>
+                    <div class="col-sm-3 col-md-3 col-lg-3">
+                        @Html.Label("Telefono")
+                        @Html.TextBox("Telefono")
+                    </div>
+                    <div class="col-sm-2 col-md-2 col-lg-2">
+                        <br />
+                        <input type="submit" class="btn btn-success" value="Buscar" />
+                    </div>
+                </div>
+            </li>
+        </ol>
+    </nav>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>
+                        @Html.LabelFor(p => Model[0].IdCliente)
+                    </th>
+                    <th>
+                        @Html.LabelFor(p => Model[0].PrimerNombre)
+                    </th>
+                    <th>
+                        @Html.LabelFor(p => Model[0].SegundoNombre)
+                    </th>
+                    <th>
+                        @Html.LabelFor(p => Model[0].PrimerApellido)
+                    </th>
+                    <th>
+                        @Html.LabelFor(p => Model[0].SegundoApellido)
+                    </th>
+                    <th>
+                        @Html.LabelFor(p => Model[0].ApellidoCasada)
+                    </th>
+                    <th>
+                        @Html.LabelFor(p => Model[0].Departamento)
+                    </th>
+                    <th>
+                        @Html.LabelFor(p => Model[0].Municipio)
+                    </th>
+                    <th>
+                        @Html.LabelFor(p => Model[0].Direccion)
+                    </th>
+                    <th>
+                        @Html.LabelFor(p => Model[0].Telefono)
+                    </th>
+                    <th>
+                        @Html.LabelFor(p => Model[0].TelefonoSecundario)
+                    </th>
+                    <th>
+                        @Html.LabelFor(p => Model[0].TelefonoCelular)
+                    </th>
+                    <th>
+                        @Html.LabelFor(p => Model[0].NIT)
+                    </th>
+                    <th>
+                        @Html.LabelFor(p => Model[0].DPI)
+                    </th>
+                    <th>
+                        @Html.LabelFor(p => Model[0].CorreoElectronico)
+                    </th>
+                    <th>
+                        @Html.LabelFor(p => Model[0].FechaNacimiento)
+                    </th>
+                    <th>
+                        @Html.LabelFor(p => Model[0].ProfesionUOficio)
+                    </th>
+                    <th>
+                        @Html.LabelFor(p => Model[0].Activo)
+                    </th>
+                    <th>
+                        Productos
+                    </th>
+                    <th>
+                        Operaciones
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IdCliente)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PrimerNombre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SegundoNombre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PrimerApellido)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SegundoApellido)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ApellidoCasada)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Departamento)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Municipio)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Direccion)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Telefono)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TelefonoSecundario)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TelefonoCelular)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NIT)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DPI)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CorreoElectronico)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FechaNacimiento)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ProfesionUOficio)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Activo)
+                        </td>
+                        <td>
+
+                            @Html.ActionLink(" ", "Index", "ProductoCliente", new { id = item.IdCliente }, new { @class = "fab fa-product-hunt btn btn-primary" })
+                        </td>
+                        <td>
+                            @Html.ActionLink(" ", "Edit", "Cliente", new { id = item.IdCliente }, new { @class = "fas fa-edit btn btn-primary" })
+                            @*@Html.ActionLink(" ", "Delete", "Cliente", new { id = item.IdCliente }, new { @class = "fas fa-trash-alt btn btn-danger" })*@
+                            <button type="button" onclick="mostrarPopup(@item.IdCliente)" class="fas fa-trash-alt btn btn-danger btn btn-danger" data-toggle="modal" data-target="#myModal"></button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+<br />
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">@Html.ActionLink("Agregar Cliente", "Add", "Cliente", null, new { @class = "btn btn-primary" })</li>
+    </ol>
+</nav>
+@using (Html.BeginForm("Delete", "Cliente", FormMethod.Post, new { @id = "frmEliminar" }))
+{
+    @Html.Hidden("IdCliente");
+}
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Desea guardar los cambios?</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div style="padding:1em">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" onclick="Eliminar()" class="btn btn-info">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function Eliminar() {
+        var frmEliminar = document.getElementById("frmEliminar");
+        frmEliminar.submit();
+    }
+    function mostrarPopup(Id) {
+        document.getElementById("IdCliente").value = Id;
+    }
+</script>

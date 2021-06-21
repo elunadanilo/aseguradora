@@ -1,0 +1,337 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DbAseguradoraModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TblAseguradora">
+    <Key>
+      <PropertyRef Name="IdAseguradora" />
+    </Key>
+    <Property Name="IdAseguradora" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Departamento" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Municipio" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NIT" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Telefono" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <NavigationProperty Name="TblProducto" Relationship="Self.FK_TblProducto_TblAseguradora" FromRole="TblAseguradora" ToRole="TblProducto" />
+  </EntityType>
+  <EntityType Name="TblCliente">
+    <Key>
+      <PropertyRef Name="IdCliente" />
+    </Key>
+    <Property Name="IdCliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PrimerNombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SegundoNombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="PrimerApellido" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SegundoApellido" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="ApellidoCasada" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Departamento" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Municipio" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Direccion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TelefonoSecundario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TelefonoCelular" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="NIT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DPI" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CorreoElectronico" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="FechaNacimiento" Type="DateTime" Precision="0" />
+    <Property Name="ProfesionUOficio" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Activo" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="TblProductoCliente" Relationship="Self.FK_TblProductoCliente_TblCliente" FromRole="TblCliente" ToRole="TblProductoCliente" />
+  </EntityType>
+  <EntityType Name="TblFormaDePago">
+    <Key>
+      <PropertyRef Name="IdFormaDePago" />
+    </Key>
+    <Property Name="IdFormaDePago" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="TblProductoCliente" Relationship="Self.FK_TblProductoCliente_TblFormaDePago" FromRole="TblFormaDePago" ToRole="TblProductoCliente" />
+  </EntityType>
+  <EntityType Name="TblMarca">
+    <Key>
+      <PropertyRef Name="IdMarca" />
+    </Key>
+    <Property Name="IdMarca" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="TblVehiculo" Relationship="Self.FK_TblVehiculo_TblMarca" FromRole="TblMarca" ToRole="TblVehiculo" />
+  </EntityType>
+  <EntityType Name="TblMovimientos">
+    <Key>
+      <PropertyRef Name="IdMovimiento" />
+    </Key>
+    <Property Name="IdMovimiento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdProductoCliente" Type="Int32" Nullable="false" />
+    <Property Name="Documento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Valor" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <NavigationProperty Name="TblProductoCliente" Relationship="Self.FK_TblMovimientos_TblProductoCliente" FromRole="TblMovimientos" ToRole="TblProductoCliente" />
+  </EntityType>
+  <EntityType Name="TblProducto">
+    <Key>
+      <PropertyRef Name="IdProducto" />
+    </Key>
+    <Property Name="IdProducto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdAseguradora" Type="Int32" Nullable="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="TblAseguradora" Relationship="Self.FK_TblProducto_TblAseguradora" FromRole="TblProducto" ToRole="TblAseguradora" />
+    <NavigationProperty Name="TblTipoProducto" Relationship="Self.FK_TblTipoProducto_TblProducto" FromRole="TblProducto" ToRole="TblTipoProducto" />
+  </EntityType>
+  <EntityType Name="TblProductoCliente">
+    <Key>
+      <PropertyRef Name="IdProductoCliente" />
+    </Key>
+    <Property Name="IdProductoCliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdTipoProducto" Type="Int32" Nullable="false" />
+    <Property Name="IdCliente" Type="Int32" Nullable="false" />
+    <Property Name="IdFormaDePago" Type="Int32" Nullable="false" />
+    <Property Name="DocumentoPoliza" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FechaInicial" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="FechaFinal" Type="DateTime" Precision="3" />
+    <Property Name="ValorGeneral" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="ValorPoliza" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="ValorActual" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="PrimaAnual" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="PrimaNeta" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <NavigationProperty Name="TblCliente" Relationship="Self.FK_TblProductoCliente_TblCliente" FromRole="TblProductoCliente" ToRole="TblCliente" />
+    <NavigationProperty Name="TblFormaDePago" Relationship="Self.FK_TblProductoCliente_TblFormaDePago" FromRole="TblProductoCliente" ToRole="TblFormaDePago" />
+    <NavigationProperty Name="TblMovimientos" Relationship="Self.FK_TblMovimientos_TblProductoCliente" FromRole="TblProductoCliente" ToRole="TblMovimientos" />
+    <NavigationProperty Name="TblTipoProducto" Relationship="Self.FK_TblProductoCliente_TblTipoProducto" FromRole="TblProductoCliente" ToRole="TblTipoProducto" />
+  </EntityType>
+  <EntityType Name="TblTipoProducto">
+    <Key>
+      <PropertyRef Name="IdTipoProducto" />
+    </Key>
+    <Property Name="IdTipoProducto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdProducto" Type="Int32" Nullable="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="TblProducto" Relationship="Self.FK_TblTipoProducto_TblProducto" FromRole="TblTipoProducto" ToRole="TblProducto" />
+    <NavigationProperty Name="TblProductoCliente" Relationship="Self.FK_TblProductoCliente_TblTipoProducto" FromRole="TblTipoProducto" ToRole="TblProductoCliente" />
+  </EntityType>
+  <EntityType Name="TblTipoVehiculo">
+    <Key>
+      <PropertyRef Name="IdTipoVehiculo" />
+    </Key>
+    <Property Name="IdTipoVehiculo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="TblVehiculo" Relationship="Self.FK_TblVehiculo_TblTipoVehiculo" FromRole="TblTipoVehiculo" ToRole="TblVehiculo" />
+  </EntityType>
+  <EntityType Name="TblVehiculo">
+    <Key>
+      <PropertyRef Name="IdVehiculo" />
+    </Key>
+    <Property Name="IdVehiculo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdMarca" Type="Int32" Nullable="false" />
+    <Property Name="IdTipoVehiculo" Type="Int32" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NumeroDePuertas" Type="Byte" Nullable="false" />
+    <Property Name="NumeroDeLlantas" Type="Byte" Nullable="false" />
+    <Property Name="NumeroDeAsientos" Type="Byte" Nullable="false" />
+    <Property Name="Motor" Type="Decimal" Precision="4" Scale="2" Nullable="false" />
+    <Property Name="Cilindros" Type="Byte" Nullable="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="TblMarca" Relationship="Self.FK_TblVehiculo_TblMarca" FromRole="TblVehiculo" ToRole="TblMarca" />
+    <NavigationProperty Name="TblTipoVehiculo" Relationship="Self.FK_TblVehiculo_TblTipoVehiculo" FromRole="TblVehiculo" ToRole="TblTipoVehiculo" />
+    <NavigationProperty Name="TblVehiculoCliente" Relationship="Self.FK_TblVehiculoCliente_TblVehiculo1" FromRole="TblVehiculo" ToRole="TblVehiculoCliente" />
+  </EntityType>
+  <EntityType Name="TblVehiculoCliente">
+    <Key>
+      <PropertyRef Name="IdVehiculoCliente" />
+    </Key>
+    <Property Name="IdVehiculoCliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdCliente" Type="Int32" Nullable="false" />
+    <Property Name="IdVehiculo" Type="Int32" Nullable="false" />
+    <Property Name="Documento" Type="Int32" Nullable="false" />
+    <Property Name="Color" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="VIN" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NumeroDePlaca" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Anio" Type="Int32" Nullable="false" />
+    <Property Name="Activo" Type="Boolean" Nullable="false" />
+    <Property Name="Valor" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <NavigationProperty Name="TblVehiculo" Relationship="Self.FK_TblVehiculoCliente_TblVehiculo1" FromRole="TblVehiculoCliente" ToRole="TblVehiculo" />
+  </EntityType>
+  <EntityType Name="TblDepartamento">
+    <Key>
+      <PropertyRef Name="Departamento" />
+      <PropertyRef Name="Nombre" />
+    </Key>
+    <Property Name="Departamento" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TblMunicipio">
+    <Key>
+      <PropertyRef Name="Departamento" />
+      <PropertyRef Name="Municipio" />
+      <PropertyRef Name="Descripcion" />
+    </Key>
+    <Property Name="Departamento" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Municipio" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_TblProducto_TblAseguradora">
+    <End Role="TblAseguradora" Type="Self.TblAseguradora" Multiplicity="1" />
+    <End Role="TblProducto" Type="Self.TblProducto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblAseguradora">
+        <PropertyRef Name="IdAseguradora" />
+      </Principal>
+      <Dependent Role="TblProducto">
+        <PropertyRef Name="IdAseguradora" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TblProductoCliente_TblCliente">
+    <End Role="TblCliente" Type="Self.TblCliente" Multiplicity="1" />
+    <End Role="TblProductoCliente" Type="Self.TblProductoCliente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblCliente">
+        <PropertyRef Name="IdCliente" />
+      </Principal>
+      <Dependent Role="TblProductoCliente">
+        <PropertyRef Name="IdCliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TblProductoCliente_TblFormaDePago">
+    <End Role="TblFormaDePago" Type="Self.TblFormaDePago" Multiplicity="1" />
+    <End Role="TblProductoCliente" Type="Self.TblProductoCliente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblFormaDePago">
+        <PropertyRef Name="IdFormaDePago" />
+      </Principal>
+      <Dependent Role="TblProductoCliente">
+        <PropertyRef Name="IdFormaDePago" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TblVehiculo_TblMarca">
+    <End Role="TblMarca" Type="Self.TblMarca" Multiplicity="1" />
+    <End Role="TblVehiculo" Type="Self.TblVehiculo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblMarca">
+        <PropertyRef Name="IdMarca" />
+      </Principal>
+      <Dependent Role="TblVehiculo">
+        <PropertyRef Name="IdMarca" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TblMovimientos_TblProductoCliente">
+    <End Role="TblProductoCliente" Type="Self.TblProductoCliente" Multiplicity="1" />
+    <End Role="TblMovimientos" Type="Self.TblMovimientos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblProductoCliente">
+        <PropertyRef Name="IdProductoCliente" />
+      </Principal>
+      <Dependent Role="TblMovimientos">
+        <PropertyRef Name="IdProductoCliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TblTipoProducto_TblProducto">
+    <End Role="TblProducto" Type="Self.TblProducto" Multiplicity="1" />
+    <End Role="TblTipoProducto" Type="Self.TblTipoProducto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblProducto">
+        <PropertyRef Name="IdProducto" />
+      </Principal>
+      <Dependent Role="TblTipoProducto">
+        <PropertyRef Name="IdProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TblProductoCliente_TblTipoProducto">
+    <End Role="TblTipoProducto" Type="Self.TblTipoProducto" Multiplicity="1" />
+    <End Role="TblProductoCliente" Type="Self.TblProductoCliente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblTipoProducto">
+        <PropertyRef Name="IdTipoProducto" />
+      </Principal>
+      <Dependent Role="TblProductoCliente">
+        <PropertyRef Name="IdTipoProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TblVehiculo_TblTipoVehiculo">
+    <End Role="TblTipoVehiculo" Type="Self.TblTipoVehiculo" Multiplicity="1" />
+    <End Role="TblVehiculo" Type="Self.TblVehiculo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblTipoVehiculo">
+        <PropertyRef Name="IdTipoVehiculo" />
+      </Principal>
+      <Dependent Role="TblVehiculo">
+        <PropertyRef Name="IdTipoVehiculo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TblVehiculoCliente_TblVehiculo1">
+    <End Role="TblVehiculo" Type="Self.TblVehiculo" Multiplicity="1" />
+    <End Role="TblVehiculoCliente" Type="Self.TblVehiculoCliente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblVehiculo">
+        <PropertyRef Name="IdVehiculo" />
+      </Principal>
+      <Dependent Role="TblVehiculoCliente">
+        <PropertyRef Name="IdVehiculo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DbAseguradoraEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="TblAseguradora" EntityType="Self.TblAseguradora" />
+    <EntitySet Name="TblCliente" EntityType="Self.TblCliente" />
+    <EntitySet Name="TblFormaDePago" EntityType="Self.TblFormaDePago" />
+    <EntitySet Name="TblMarca" EntityType="Self.TblMarca" />
+    <EntitySet Name="TblMovimientos" EntityType="Self.TblMovimientos" />
+    <EntitySet Name="TblProducto" EntityType="Self.TblProducto" />
+    <EntitySet Name="TblProductoCliente" EntityType="Self.TblProductoCliente" />
+    <EntitySet Name="TblTipoProducto" EntityType="Self.TblTipoProducto" />
+    <EntitySet Name="TblTipoVehiculo" EntityType="Self.TblTipoVehiculo" />
+    <EntitySet Name="TblVehiculo" EntityType="Self.TblVehiculo" />
+    <EntitySet Name="TblVehiculoCliente" EntityType="Self.TblVehiculoCliente" />
+    <EntitySet Name="TblDepartamento" EntityType="Self.TblDepartamento" />
+    <EntitySet Name="TblMunicipio" EntityType="Self.TblMunicipio" />
+    <AssociationSet Name="FK_TblProducto_TblAseguradora" Association="Self.FK_TblProducto_TblAseguradora">
+      <End Role="TblAseguradora" EntitySet="TblAseguradora" />
+      <End Role="TblProducto" EntitySet="TblProducto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TblProductoCliente_TblCliente" Association="Self.FK_TblProductoCliente_TblCliente">
+      <End Role="TblCliente" EntitySet="TblCliente" />
+      <End Role="TblProductoCliente" EntitySet="TblProductoCliente" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TblProductoCliente_TblFormaDePago" Association="Self.FK_TblProductoCliente_TblFormaDePago">
+      <End Role="TblFormaDePago" EntitySet="TblFormaDePago" />
+      <End Role="TblProductoCliente" EntitySet="TblProductoCliente" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TblVehiculo_TblMarca" Association="Self.FK_TblVehiculo_TblMarca">
+      <End Role="TblMarca" EntitySet="TblMarca" />
+      <End Role="TblVehiculo" EntitySet="TblVehiculo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TblMovimientos_TblProductoCliente" Association="Self.FK_TblMovimientos_TblProductoCliente">
+      <End Role="TblProductoCliente" EntitySet="TblProductoCliente" />
+      <End Role="TblMovimientos" EntitySet="TblMovimientos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TblTipoProducto_TblProducto" Association="Self.FK_TblTipoProducto_TblProducto">
+      <End Role="TblProducto" EntitySet="TblProducto" />
+      <End Role="TblTipoProducto" EntitySet="TblTipoProducto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TblProductoCliente_TblTipoProducto" Association="Self.FK_TblProductoCliente_TblTipoProducto">
+      <End Role="TblTipoProducto" EntitySet="TblTipoProducto" />
+      <End Role="TblProductoCliente" EntitySet="TblProductoCliente" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TblVehiculo_TblTipoVehiculo" Association="Self.FK_TblVehiculo_TblTipoVehiculo">
+      <End Role="TblTipoVehiculo" EntitySet="TblTipoVehiculo" />
+      <End Role="TblVehiculo" EntitySet="TblVehiculo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TblVehiculoCliente_TblVehiculo1" Association="Self.FK_TblVehiculoCliente_TblVehiculo1">
+      <End Role="TblVehiculo" EntitySet="TblVehiculo" />
+      <End Role="TblVehiculoCliente" EntitySet="TblVehiculoCliente" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

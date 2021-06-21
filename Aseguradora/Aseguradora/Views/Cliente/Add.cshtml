@@ -1,0 +1,148 @@
+﻿@model Aseguradora.Models.ClienteModel
+@{
+    ViewBag.Title = "Add";
+
+    List<SelectListItem> listaDepartamento = (List<SelectListItem>)ViewBag.listaDepartamento;
+    List<SelectListItem> listaMunicipio = (List<SelectListItem>)ViewBag.listaMunicipio;
+}
+
+<br />
+
+
+
+<div class="card">
+    <div class="card-header">
+        Agregar Cliente
+    </div>
+    <div class="card-body">
+        @using (Html.BeginForm("Add", "Cliente", FormMethod.Post, new { @id = "FrmAgregarCliente" }))
+        {
+            <div class="row">
+                <div class="col-md-3">
+                    @Html.LabelFor(p => p.PrimerNombre)
+                    @Html.TextBoxFor(p => p.PrimerNombre, new { @class = "form-control obligatorio" })
+                    @Html.ValidationMessage("PrimerNombre", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    @Html.LabelFor(p => p.SegundoNombre)
+                    @Html.TextBoxFor(p => p.SegundoNombre, new { @class = "form-control obligatorio" })
+                    @Html.ValidationMessage("SegundoNombre", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    @Html.LabelFor(p => p.PrimerApellido)
+                    @Html.TextBoxFor(p => p.PrimerApellido, new { @class = "form-control obligatorio" })
+                    @Html.ValidationMessage("PrimerApellido", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    @Html.LabelFor(p => p.SegundoApellido)
+                    @Html.TextBoxFor(p => p.SegundoApellido, new { @class = "form-control opcional" })
+                    @Html.ValidationMessage("SegundoApellido", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    @Html.LabelFor(p => p.ApellidoCasada)
+                    @Html.TextBoxFor(p => p.ApellidoCasada, new { @class = "form-control opcional" })
+                    @Html.ValidationMessage("ApellidoCasada", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    @Html.LabelFor(p => p.Departamento)
+
+                    @Html.DropDownList("Departamento", listaDepartamento, null, new { @class = "form-control obligatorio" })
+                    @Html.ValidationMessage("Departamento", new { @class = "text-danger" })
+
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    @Html.LabelFor(p => p.Municipio)
+
+                    @Html.DropDownList("Municipio", listaMunicipio, null, new { @class = "form-control obligatorio" })
+                    @Html.ValidationMessage("Municipio", new { @class = "text-danger" })
+
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    @Html.LabelFor(p => p.Direccion)
+                    @Html.TextBoxFor(p => p.Direccion, new { @class = "form-control obligatorio" })
+                    @Html.ValidationMessage("Direccion", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    @Html.LabelFor(p => p.Telefono)
+                    @Html.TextBoxFor(p => p.Telefono, new { @class = "form-control obligatorio" })
+                    @Html.ValidationMessage("Telefono", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    @Html.LabelFor(p => p.TelefonoSecundario)
+                    @Html.TextBoxFor(p => p.TelefonoSecundario, new { @class = "form-control opcional" })
+                    @Html.ValidationMessage("TelefonoSecundario", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    @Html.LabelFor(p => p.TelefonoCelular)
+                    @Html.TextBoxFor(p => p.TelefonoCelular, new { @class = "form-control opcional" })
+                    @Html.ValidationMessage("TelefonoCelular", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    @Html.LabelFor(p => p.NIT)
+                    @Html.TextBoxFor(p => p.NIT, new { @class = "form-control obligatorio" })
+                    @Html.ValidationMessage("NIT", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    @Html.LabelFor(p => p.DPI)
+                    @Html.TextBoxFor(p => p.DPI, new { @class = "form-control obligatorio" })
+                    @Html.ValidationMessage("DPI", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    @Html.LabelFor(p => p.CorreoElectronico)
+                    @Html.TextBoxFor(p => p.CorreoElectronico, new { @class = "form-control obligatorio" })
+                    @Html.ValidationMessage("CorreoElectronico", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    @Html.LabelFor(p => p.FechaNacimiento)
+                    @Html.EditorFor(p => p.FechaNacimiento, new { htmlAttributes = new { @class = "form-control opcional" } })
+                    @Html.ValidationMessage("FechaNacimiento", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    @Html.LabelFor(p => p.ProfesionUOficio)
+                    @Html.TextBoxFor(p => p.ProfesionUOficio, new { @class = "form-control opcional" })
+                    @Html.ValidationMessage("ProfesionUOficio", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    @Html.LabelFor(p => p.Activo)
+                    @Html.TextBoxFor(p => p.Activo, new { @class = "form-control" })
+                    @Html.ValidationMessage("Activo", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    <br />
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                        Aceptar
+                    </button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Desea guardar los cambios?</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div style="padding:1em">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" onclick="Agregar()" class="btn btn-info">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function Agregar() {
+        var FrmAgregarCliente = document.getElementById("FrmAgregarCliente");
+        FrmAgregarCliente.submit();
+    }
+</script>

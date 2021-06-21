@@ -1,0 +1,51 @@
+﻿@using Aseguradora.Models
+@model ProductoModel
+@{
+    ViewBag.Title = "Add";
+}
+
+<h2>Add</h2>
+<div class="row">
+    <div class="col-md-6">
+        @using (Html.BeginForm("Add", "Producto", FormMethod.Post, new { @id = "FrmAgregarProducto" }))
+        {
+            <div>
+                @Html.LabelFor(p => p.IdAseguradora)
+                @Html.TextBoxFor(p => p.IdAseguradora, new { @class = "form-control obligatorio" })
+                @Html.ValidationMessage("IdAseguradora", new { @class = "text-danger" })
+            </div>
+            <div>
+                @Html.LabelFor(p => p.Descripcion)
+                @Html.TextBoxFor(p => p.Descripcion, new { @class = "form-control obligatorio" })
+                @Html.ValidationMessage("Descripcion", new { @class = "text-danger" })
+            </div>
+            <br />
+            <br />
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                Aceptar
+            </button>
+        }
+
+    </div>
+</div>
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Desea guardar los cambios?</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div style="padding:1em">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" onclick="Agregar()" class="btn btn-info">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function Agregar() {
+        var FrmAgregarProducto = document.getElementById("FrmAgregarProducto");
+        FrmAgregarProducto.submit();
+    }
+</script>
