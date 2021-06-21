@@ -54,15 +54,16 @@
     refresh();
 
     function refresh() {
-        fetch("@Url.Content("~/TipoProducto/ListarProducto/IdAseguradora=")" + CboAseguradora.value)
+        fetch("@Url.Content("~/TipoProducto/Edit/")" + CboAseguradora.value)
             .then(function (result) {
-                if (result.ok) {
-                    console.log(result);
-                }
+                //if (result.ok) {
+                //    console.log(result);
+                //}
             })
             .then(function (data) {
-                console.log(data);
+                //console.log(data);
             })
+
     }
 
     function Agregar() {

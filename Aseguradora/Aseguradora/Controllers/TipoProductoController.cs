@@ -104,13 +104,21 @@ namespace Aseguradora.Controllers
             }
         }
 
-        public ActionResult ListarProducto(int IdAseguradora)
+        //public ActionResult ListarProducto(int IdAseguradora)
+        //{
+        //    OperationResponse response = productodao.GetListProducto(IdAseguradora);
+
+
+        //        return Json(response.Data);
+
+        //}
+        public JsonResult ListarProducto(int IdAseguradora)
         {
             OperationResponse response = productodao.GetListProducto(IdAseguradora);
-        
 
-                return Json(response.Data);
-           
+
+            return Json(response.Data,JsonRequestBehavior.AllowGet);
+
         }
 
         public void listarAseguradora()
