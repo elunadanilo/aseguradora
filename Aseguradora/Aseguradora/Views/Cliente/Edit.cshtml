@@ -1,186 +1,134 @@
 ﻿@using Aseguradora.Models
-@model List<ClienteModel>
-
+@model  ClienteModel
 @{
-    ViewBag.Title = "Index";
-}
-
-<h2>Listado de Clientes</h2>
-@using (Html.BeginForm("Index", "Cliente", FormMethod.Post, new { @id = "FrmBusquedaCliente" }))
-{
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item active" aria-current="page">
-                <div class="row">
-                    <div class="col-sm-3 col-md-3 col-lg-3">
-                        @Html.Label("Nombre Cliente")
-                        @Html.TextBox("PrimerNombre")
-                    </div>
-                    <div class="col-sm-3 col-md-3 col-lg-3">
-                        @Html.Label("Primer Apellido")
-                        @Html.TextBox("PrimerApellido")
-                    </div>
-                    <div class="col-sm-3 col-md-3 col-lg-3">
-                        @Html.Label("Telefono")
-                        @Html.TextBox("Telefono")
-                    </div>
-                    <div class="col-sm-2 col-md-2 col-lg-2">
-                        <br />
-                        <input type="submit" class="btn btn-success" value="Buscar" />
-                    </div>
-                </div>
-            </li>
-        </ol>
-    </nav>
-    <div class="table-responsive">
-        <table class="table table-bordered table-hover table-striped">
-            <thead class="thead-dark">
-                <tr>
-                    <th>
-                        @Html.LabelFor(p => Model[0].IdCliente)
-                    </th>
-                    <th>
-                        @Html.LabelFor(p => Model[0].PrimerNombre)
-                    </th>
-                    <th>
-                        @Html.LabelFor(p => Model[0].SegundoNombre)
-                    </th>
-                    <th>
-                        @Html.LabelFor(p => Model[0].PrimerApellido)
-                    </th>
-                    <th>
-                        @Html.LabelFor(p => Model[0].SegundoApellido)
-                    </th>
-                    <th>
-                        @Html.LabelFor(p => Model[0].ApellidoCasada)
-                    </th>
-                    <th>
-                        @Html.LabelFor(p => Model[0].Departamento)
-                    </th>
-                    <th>
-                        @Html.LabelFor(p => Model[0].Municipio)
-                    </th>
-                    <th>
-                        @Html.LabelFor(p => Model[0].Direccion)
-                    </th>
-                    <th>
-                        @Html.LabelFor(p => Model[0].Telefono)
-                    </th>
-                    <th>
-                        @Html.LabelFor(p => Model[0].TelefonoSecundario)
-                    </th>
-                    <th>
-                        @Html.LabelFor(p => Model[0].TelefonoCelular)
-                    </th>
-                    <th>
-                        @Html.LabelFor(p => Model[0].NIT)
-                    </th>
-                    <th>
-                        @Html.LabelFor(p => Model[0].DPI)
-                    </th>
-                    <th>
-                        @Html.LabelFor(p => Model[0].CorreoElectronico)
-                    </th>
-                    <th>
-                        @Html.LabelFor(p => Model[0].FechaNacimiento)
-                    </th>
-                    <th>
-                        @Html.LabelFor(p => Model[0].ProfesionUOficio)
-                    </th>
-                    <th>
-                        @Html.LabelFor(p => Model[0].Activo)
-                    </th>
-                    <th>
-                        Productos
-                    </th>
-                    <th>
-                        Operaciones
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.IdCliente)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.PrimerNombre)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.SegundoNombre)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.PrimerApellido)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.SegundoApellido)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ApellidoCasada)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Departamento)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Municipio)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Direccion)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Telefono)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.TelefonoSecundario)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.TelefonoCelular)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.NIT)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.DPI)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.CorreoElectronico)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.FechaNacimiento)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ProfesionUOficio)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Activo)
-                        </td>
-                        <td>
-
-                            @Html.ActionLink(" ", "Index", "ProductoCliente", new { id = item.IdCliente }, new { @class = "fab fa-product-hunt btn btn-primary" })
-                        </td>
-                        <td>
-                            @Html.ActionLink(" ", "Edit", "Cliente", new { id = item.IdCliente }, new { @class = "fas fa-edit btn btn-primary" })
-                            @*@Html.ActionLink(" ", "Delete", "Cliente", new { id = item.IdCliente }, new { @class = "fas fa-trash-alt btn btn-danger" })*@
-                            <button type="button" onclick="mostrarPopup(@item.IdCliente)" class="fas fa-trash-alt btn btn-danger btn btn-danger" data-toggle="modal" data-target="#myModal"></button>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
+    ViewBag.Title = "Edit";
+    List<SelectListItem> listaDepartamento = (List<SelectListItem>)ViewBag.listaDepartamento;
+    List<SelectListItem> listaMunicipio = (List<SelectListItem>)ViewBag.listaMunicipio;
 }
 <br />
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item active" aria-current="page">@Html.ActionLink("Agregar Cliente", "Add", "Cliente", null, new { @class = "btn btn-primary" })</li>
-    </ol>
-</nav>
-@using (Html.BeginForm("Delete", "Cliente", FormMethod.Post, new { @id = "frmEliminar" }))
-{
-    @Html.Hidden("IdCliente");
-}
+<div class="card">
+    <div class="card-header">
+        Editar Cliente
+    </div>
+    <div class="card-body">
+        @using (Html.BeginForm("Edit", "Cliente", FormMethod.Post, new { @id = "FrmEditarCliente" }))
+        {
+            <div class="row">
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    @Html.LabelFor(p => p.IdCliente)
+                    @Html.TextBoxFor(p => p.IdCliente, new { @class = "form-control", @readOnly = true })
+                    @Html.ValidationMessage("IdCliente", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    @Html.LabelFor(p => p.PrimerNombre)
+                    @Html.TextBoxFor(p => p.PrimerNombre, new { @class = "form-control obligatorio" })
+                    @Html.ValidationMessage("PrimerNombre", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    @Html.LabelFor(p => p.SegundoNombre)
+                    @Html.TextBoxFor(p => p.SegundoNombre, new { @class = "form-control  obligatorio" })
+                    @Html.ValidationMessage("SegundoNombre", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    @Html.LabelFor(p => p.PrimerApellido)
+                    @Html.TextBoxFor(p => p.PrimerApellido, new { @class = "form-control  obligatorio" })
+                    @Html.ValidationMessage("PrimerApellido", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    @Html.LabelFor(p => p.SegundoApellido)
+                    @Html.TextBoxFor(p => p.SegundoApellido, new { @class = "form-control  opcional" })
+                    @Html.ValidationMessage("SegundoApellido", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    @Html.LabelFor(p => p.ApellidoCasada)
+                    @Html.TextBoxFor(p => p.ApellidoCasada, new { @class = "form-control opcional" })
+                    @Html.ValidationMessage("ApellidoCasada", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    @Html.LabelFor(p => p.Departamento)
+
+                    @Html.DropDownList("Departamento", listaDepartamento, null, new { @class = "form-control obligatorio" })
+                    @Html.ValidationMessage("Departamento", new { @class = "text-danger" })
+
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    @Html.LabelFor(p => p.Municipio)
+
+                    @Html.DropDownList("Municipio", listaMunicipio, null, new { @class = "form-control obligatorio" })
+                    @Html.ValidationMessage("Municipio", new { @class = "text-danger" })
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    @Html.LabelFor(p => p.Direccion)
+                    @Html.TextBoxFor(p => p.Direccion, new { @class = "form-control obligatorio" })
+                    @Html.ValidationMessage("Direccion", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    @Html.LabelFor(p => p.Telefono)
+                    @Html.TextBoxFor(p => p.Telefono, new { @class = "form-control obligatorio" })
+                    @Html.ValidationMessage("Telefono", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    @Html.LabelFor(p => p.TelefonoSecundario)
+                    @Html.TextBoxFor(p => p.TelefonoSecundario, new { @class = "form-control opcional" })
+                    @Html.ValidationMessage("TelefonoSecundario", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    @Html.LabelFor(p => p.TelefonoCelular)
+                    @Html.TextBoxFor(p => p.TelefonoCelular, new { @class = "form-control opcional" })
+                    @Html.ValidationMessage("TelefonoCelular", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    @Html.LabelFor(p => p.NIT)
+                    @Html.TextBoxFor(p => p.NIT, new { @class = "form-control obligatorio" })
+                    @Html.ValidationMessage("NIT", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    @Html.LabelFor(p => p.DPI)
+                    @Html.TextBoxFor(p => p.DPI, new { @class = "form-control obligatorio" })
+                    @Html.ValidationMessage("DPI", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    @Html.LabelFor(p => p.CorreoElectronico)
+                    @Html.TextBoxFor(p => p.CorreoElectronico, new { @class = "form-control obligatorio" })
+                    @Html.ValidationMessage("CorreoElectronico", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    @Html.LabelFor(p => p.FechaNacimiento)
+                    @Html.EditorFor(p => p.FechaNacimiento, new { htmlAttributes = new { @class = "form-control obligatorio" } })
+                    @Html.ValidationMessage("FechaNacimiento", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    @Html.LabelFor(p => p.ProfesionUOficio)
+                    @Html.TextBoxFor(p => p.ProfesionUOficio, new { @class = "form-control obligatorio" })
+                    @Html.ValidationMessage("ProfesionUOficio", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    @Html.LabelFor(p => p.Activo)
+                    @Html.TextBoxFor(p => p.Activo, new { @class = "form-control obligatorio" })
+                    @Html.ValidationMessage("Activo", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                    <br />
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                        Aceptar
+                    </button>
+                    @Html.ActionLink("Regresar", "Index", "Cliente", null, new { @class = "btn btn-danger" })
+                </div>
+            </div>
+        }
+
+
+    </div>
+</div>
 <div class="modal" id="myModal">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -189,18 +137,15 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div style="padding:1em">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="button" onclick="Eliminar()" class="btn btn-info">Aceptar</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" onclick="Editar()" class="btn btn-info">Aceptar</button>
             </div>
         </div>
     </div>
 </div>
 <script>
-    function Eliminar() {
-        var frmEliminar = document.getElementById("frmEliminar");
-        frmEliminar.submit();
-    }
-    function mostrarPopup(Id) {
-        document.getElementById("IdCliente").value = Id;
+    function Editar() {
+        var FrmEditarCliente = document.getElementById("FrmEditarCliente");
+        FrmEditarCliente.submit();
     }
 </script>

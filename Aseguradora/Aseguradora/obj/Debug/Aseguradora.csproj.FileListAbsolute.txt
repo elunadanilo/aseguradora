@@ -131,3 +131,4 @@ C:\Users\elunadanilo\Documents\GitHub\aseguradora\Aseguradora\Aseguradora\obj\De
 C:\Users\elunadanilo\Documents\GitHub\aseguradora\Aseguradora\Aseguradora\obj\Debug\Aseguradora.csproj.CopyComplete
 C:\Users\elunadanilo\Documents\GitHub\aseguradora\Aseguradora\Aseguradora\obj\Debug\Aseguradora.dll
 C:\Users\elunadanilo\Documents\GitHub\aseguradora\Aseguradora\Aseguradora\obj\Debug\Aseguradora.pdb
+C:\Users\elunadanilo\Documents\GitHub\aseguradora\Aseguradora\Aseguradora\obj\Debug\Aseguradora.csprojAssemblyReference.cache

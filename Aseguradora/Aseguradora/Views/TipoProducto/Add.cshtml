@@ -18,7 +18,7 @@
                 @Html.ValidationMessage("IdAseguradora", new { @class = "text-danger" })
             </div>
             <div>
-                <select id="IdProducto" name="IdProducto"></select>
+                <select id="IdProducto" name="IdProducto" class="form-control obligatorio"></select>
             </div>
             <div>
                 @Html.LabelFor(p => p.Descripcion)
@@ -54,16 +54,24 @@
     refresh();
 
     function refresh() {
-        fetch("@Url.Content("~/TipoProducto/Edit/")" + CboAseguradora.value)
+        fetch("@Url.Content("~/TipoProducto/ListarProducto/")" + "?IdAseguradora=" + CboAseguradora.value)
             .then(function (result) {
-                //if (result.ok) {
-                //    console.log(result);
-                //}
+                if (result.ok) {
+                    return result.json();
+                }
             })
             .then(function (data) {
-                //console.log(data);
-            })
+                console.log(data);
+                data.forEach(function (element) {
+                    console.log(element);
+                    let cbo = document.getElementById("IdProducto");
+                    let opt = document.createElement("option");
+                    opt.appendChild(document.createTextNode(element.Text));
+                    opt.value = element.Value;
 
+                    cbo.appendChild(opt);
+                })
+            })
     }
 
     function Agregar() {

@@ -112,13 +112,10 @@ namespace Aseguradora.Controllers
         //        return Json(response.Data);
 
         //}
-        public JsonResult ListarProducto(int IdAseguradora)
+        public ActionResult ListarProducto(int IdAseguradora)
         {
             OperationResponse response = productodao.GetListProducto(IdAseguradora);
-
-
-            return Json(response.Data,JsonRequestBehavior.AllowGet);
-
+            return Json(response.Data, JsonRequestBehavior.AllowGet);
         }
 
         public void listarAseguradora()
