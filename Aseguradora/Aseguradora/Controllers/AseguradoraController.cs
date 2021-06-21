@@ -50,6 +50,7 @@ namespace Aseguradora.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
         public ActionResult Edit(int Id)
         {
 
@@ -64,6 +65,7 @@ namespace Aseguradora.Controllers
                 return View();
             }
         }
+
         [HttpPost]
         public async Task<ActionResult> Edit(AseguradoraModel oAseguradora)
         {
