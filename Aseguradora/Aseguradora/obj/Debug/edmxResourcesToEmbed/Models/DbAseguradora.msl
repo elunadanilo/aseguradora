@@ -28,6 +28,7 @@
     <EntitySetMapping Name="TblCliente">
       <EntityTypeMapping TypeName="DbAseguradoraModel.TblCliente">
         <MappingFragment StoreEntitySet="TblCliente">
+          <ScalarProperty Name="TieneUsuario" ColumnName="TieneUsuario" />
           <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
           <ScalarProperty Name="PrimerNombre" ColumnName="PrimerNombre" />
           <ScalarProperty Name="SegundoNombre" ColumnName="SegundoNombre" />
@@ -166,6 +167,49 @@
           <ScalarProperty Name="Departamento" ColumnName="Departamento" />
           <ScalarProperty Name="Municipio" ColumnName="Municipio" />
           <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TblPagina">
+      <EntityTypeMapping TypeName="DbAseguradoraModel.TblPagina">
+        <MappingFragment StoreEntitySet="TblPagina">
+          <ScalarProperty Name="BHabilitado" ColumnName="BHabilitado" />
+          <ScalarProperty Name="Controlador" ColumnName="Controlador" />
+          <ScalarProperty Name="Accion" ColumnName="Accion" />
+          <ScalarProperty Name="Mensaje" ColumnName="Mensaje" />
+          <ScalarProperty Name="IdPagina" ColumnName="IdPagina" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TblRol">
+      <EntityTypeMapping TypeName="DbAseguradoraModel.TblRol">
+        <MappingFragment StoreEntitySet="TblRol">
+          <ScalarProperty Name="BHabilitado" ColumnName="BHabilitado" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="IdRol" ColumnName="IdRol" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TblRolPagina">
+      <EntityTypeMapping TypeName="DbAseguradoraModel.TblRolPagina">
+        <MappingFragment StoreEntitySet="TblRolPagina">
+          <ScalarProperty Name="BHabilitado" ColumnName="BHabilitado" />
+          <ScalarProperty Name="IdPagina" ColumnName="IdPagina" />
+          <ScalarProperty Name="IdRol" ColumnName="IdRol" />
+          <ScalarProperty Name="IdRolPagina" ColumnName="IdRolPagina" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TblUsuario">
+      <EntityTypeMapping TypeName="DbAseguradoraModel.TblUsuario">
+        <MappingFragment StoreEntitySet="TblUsuario">
+          <ScalarProperty Name="IdRol" ColumnName="IdRol" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TipoUsuario" ColumnName="TipoUsuario" />
+          <ScalarProperty Name="Clave" ColumnName="Clave" />
+          <ScalarProperty Name="NombreUsuario" ColumnName="NombreUsuario" />
+          <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -1,0 +1,24 @@
+﻿@using Aseguradora.Models
+@model List<RolModel>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-hover table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <td>@Html.LabelFor(p => Model[0].IdRol)</td>
+                <td>@Html.LabelFor(p => Model[0].Nombre)</td>
+                <td>@Html.LabelFor(p => Model[0].Descripcion)</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.IdRol</td>
+                    <td>@item.Nombre</td>
+                    <td>@item.Descripcion</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

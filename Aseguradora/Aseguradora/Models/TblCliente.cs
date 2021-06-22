@@ -38,6 +38,7 @@ namespace Aseguradora.Models
         public Nullable<System.DateTime> FechaNacimiento { get; set; }
         public string ProfesionUOficio { get; set; }
         public bool Activo { get; set; }
+        public Nullable<int> TieneUsuario { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TblProductoCliente> TblProductoCliente { get; set; }

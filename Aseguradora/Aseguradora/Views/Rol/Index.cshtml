@@ -1,0 +1,29 @@
+﻿@using Aseguradora.Models
+@model List<RolModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@using (Ajax.BeginForm("Filtro", "", new AjaxOptions
+{
+    HttpMethod = "POST",
+    UpdateTargetId = "divRol",
+    InsertionMode = InsertionMode.Replace
+
+}, new { @id = "FrmFiltro" }))
+{
+    @Html.Label("Ingrese nombre rol")
+    @Html.TextBox("Nombre",null, new { @class="form-control"})
+    <div id="divRol">
+        @Html.Partial("_TablaRol", Model)
+    </div>
+}
+
+<script>
+    var nombre = document.getElementById("Nombre");
+    nombre.onkeyup = function () {
+        $("#FrmFiltro").trigger("submit");
+    }
+</script>

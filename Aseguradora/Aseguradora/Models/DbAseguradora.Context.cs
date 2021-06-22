@@ -39,5 +39,9 @@ namespace Aseguradora.Models
         public virtual DbSet<TblVehiculoCliente> TblVehiculoCliente { get; set; }
         public virtual DbSet<TblDepartamento> TblDepartamento { get; set; }
         public virtual DbSet<TblMunicipio> TblMunicipio { get; set; }
+        public virtual DbSet<TblPagina> TblPagina { get; set; }
+        public virtual DbSet<TblRol> TblRol { get; set; }
+        public virtual DbSet<TblRolPagina> TblRolPagina { get; set; }
+        public virtual DbSet<TblUsuario> TblUsuario { get; set; }
     }
 }

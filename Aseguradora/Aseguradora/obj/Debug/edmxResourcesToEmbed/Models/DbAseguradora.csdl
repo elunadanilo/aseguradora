@@ -46,6 +46,7 @@
     <Property Name="ProfesionUOficio" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
     <Property Name="Activo" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="TblProductoCliente" Relationship="Self.FK_TblProductoCliente_TblCliente" FromRole="TblCliente" ToRole="TblProductoCliente" />
+    <Property Name="TieneUsuario" Type="Int32" />
   </EntityType>
   <EntityType Name="TblFormaDePago">
     <Key>
@@ -346,6 +347,10 @@
       <End Role="TblProductoCliente" EntitySet="TblProductoCliente" />
       <End Role="TblMovimientos" EntitySet="TblMovimientos" />
     </AssociationSet>
+    <EntitySet Name="TblPagina" EntityType="DbAseguradoraModel.TblPagina" />
+    <EntitySet Name="TblRol" EntityType="DbAseguradoraModel.TblRol" />
+    <EntitySet Name="TblRolPagina" EntityType="DbAseguradoraModel.TblRolPagina" />
+    <EntitySet Name="TblUsuario" EntityType="DbAseguradoraModel.TblUsuario" />
   </EntityContainer>
   <Association Name="FK_TblVehiculoCliente_TblProductoCliente">
     <End Type="DbAseguradoraModel.TblProductoCliente" Role="TblProductoCliente" Multiplicity="1" />
@@ -371,4 +376,43 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="TblPagina">
+    <Key>
+      <PropertyRef Name="IdPagina" />
+    </Key>
+    <Property Name="IdPagina" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Mensaje" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Accion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Controlador" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="BHabilitado" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TblRol">
+    <Key>
+      <PropertyRef Name="IdRol" />
+    </Key>
+    <Property Name="IdRol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="BHabilitado" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TblRolPagina">
+    <Key>
+      <PropertyRef Name="IdRolPagina" />
+    </Key>
+    <Property Name="IdRolPagina" Type="Int32" Nullable="false" />
+    <Property Name="IdRol" Type="Int32" Nullable="false" />
+    <Property Name="IdPagina" Type="Int32" Nullable="false" />
+    <Property Name="BHabilitado" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TblUsuario">
+    <Key>
+      <PropertyRef Name="IdUsuario" />
+    </Key>
+    <Property Name="IdUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NombreUsuario" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Clave" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="TipoUsuario" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="IdRol" Type="Int32" Nullable="false" />
+  </EntityType>
 </Schema>

@@ -50,6 +50,12 @@
                 @Html.ActionLink("TipoProducto", "Index", "TipoProducto", new { area = "" }, new { @class = "navbar-brand" })
             </li>
             <li class="nav-item">
+                @Html.ActionLink("Rol", "Index", "Rol", new { area = "" }, new { @class = "navbar-brand" })
+            </li>
+            <li class="nav-item">
+                @Html.ActionLink("Pagina", "Index", "Pagina", new { area = "" }, new { @class = "navbar-brand" })
+            </li>
+            <li class="nav-item">
                 @Html.ActionLink("Acerca de", "About", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </li>
             <li class="nav-item">
@@ -70,6 +76,6 @@
     {
         RenderSection("script");
     }
-
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
 </body>
 </html>

@@ -49,6 +49,7 @@
           <Property Name="FechaNacimiento" Type="date" />
           <Property Name="ProfesionUOficio" Type="varchar" MaxLength="150" />
           <Property Name="Activo" Type="bit" Nullable="false" />
+          <Property Name="TieneUsuario" Type="int" />
         </EntityType>
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'DbAseguradora.dbo.TblDepartamento' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
@@ -95,6 +96,16 @@ advertencia 6002: La tabla o vista 'DbAseguradora.dbo.TblMunicipio' no tiene def
           <Property Name="Municipio" Type="char" MaxLength="2" Nullable="false" />
           <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="TblPagina">
+          <Key>
+            <PropertyRef Name="IdPagina" />
+          </Key>
+          <Property Name="IdPagina" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Mensaje" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Accion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Controlador" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="BHabilitado" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="TblProducto">
           <Key>
             <PropertyRef Name="IdProducto" />
@@ -120,6 +131,24 @@ advertencia 6002: La tabla o vista 'DbAseguradora.dbo.TblMunicipio' no tiene def
           <Property Name="PrimaAnual" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="PrimaNeta" Type="decimal" Precision="10" Scale="2" Nullable="false" />
         </EntityType>
+        <EntityType Name="TblRol">
+          <Key>
+            <PropertyRef Name="IdRol" />
+          </Key>
+          <Property Name="IdRol" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="BHabilitado" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TblRolPagina">
+          <Key>
+            <PropertyRef Name="IdRolPagina" />
+          </Key>
+          <Property Name="IdRolPagina" Type="int" Nullable="false" />
+          <Property Name="IdRol" Type="int" Nullable="false" />
+          <Property Name="IdPagina" Type="int" Nullable="false" />
+          <Property Name="BHabilitado" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="TblTipoProducto">
           <Key>
             <PropertyRef Name="IdTipoProducto" />
@@ -134,6 +163,17 @@ advertencia 6002: La tabla o vista 'DbAseguradora.dbo.TblMunicipio' no tiene def
           </Key>
           <Property Name="IdTipoVehiculo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TblUsuario">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="IdUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreUsuario" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Clave" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="TipoUsuario" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="IdRol" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="TblVehiculo">
           <Key>
@@ -293,10 +333,14 @@ advertencia 6002: La tabla o vista 'DbAseguradora.dbo.TblMunicipio' no tiene def
           <EntitySet Name="TblFormaDePago" EntityType="Self.TblFormaDePago" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblMarca" EntityType="Self.TblMarca" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblMovimientos" EntityType="Self.TblMovimientos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblPagina" EntityType="Self.TblPagina" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblProducto" EntityType="Self.TblProducto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblProductoCliente" EntityType="Self.TblProductoCliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblRol" EntityType="Self.TblRol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblRolPagina" EntityType="Self.TblRolPagina" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblTipoProducto" EntityType="Self.TblTipoProducto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblTipoVehiculo" EntityType="Self.TblTipoVehiculo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblUsuario" EntityType="Self.TblUsuario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblVehiculo" EntityType="Self.TblVehiculo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblVehiculoCliente" EntityType="Self.TblVehiculoCliente" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblDepartamento" EntityType="Self.TblDepartamento" store:Type="Tables" store:Schema="dbo">
@@ -403,6 +447,7 @@ advertencia 6002: La tabla o vista 'DbAseguradora.dbo.TblMunicipio' no tiene def
           <Property Name="ProfesionUOficio" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="Activo" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="TblProductoCliente" Relationship="Self.FK_TblProductoCliente_TblCliente" FromRole="TblCliente" ToRole="TblProductoCliente" />
+          <Property Name="TieneUsuario" Type="Int32" />
         </EntityType>
         <EntityType Name="TblFormaDePago">
           <Key>
@@ -703,6 +748,10 @@ advertencia 6002: La tabla o vista 'DbAseguradora.dbo.TblMunicipio' no tiene def
             <End Role="TblProductoCliente" EntitySet="TblProductoCliente" />
             <End Role="TblMovimientos" EntitySet="TblMovimientos" />
           </AssociationSet>
+          <EntitySet Name="TblPagina" EntityType="DbAseguradoraModel.TblPagina" />
+          <EntitySet Name="TblRol" EntityType="DbAseguradoraModel.TblRol" />
+          <EntitySet Name="TblRolPagina" EntityType="DbAseguradoraModel.TblRolPagina" />
+          <EntitySet Name="TblUsuario" EntityType="DbAseguradoraModel.TblUsuario" />
         </EntityContainer>
         <Association Name="FK_TblVehiculoCliente_TblProductoCliente">
           <End Type="DbAseguradoraModel.TblProductoCliente" Role="TblProductoCliente" Multiplicity="1" />
@@ -728,6 +777,45 @@ advertencia 6002: La tabla o vista 'DbAseguradora.dbo.TblMunicipio' no tiene def
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="TblPagina">
+          <Key>
+            <PropertyRef Name="IdPagina" />
+          </Key>
+          <Property Name="IdPagina" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Mensaje" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Accion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Controlador" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="BHabilitado" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TblRol">
+          <Key>
+            <PropertyRef Name="IdRol" />
+          </Key>
+          <Property Name="IdRol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="BHabilitado" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TblRolPagina">
+          <Key>
+            <PropertyRef Name="IdRolPagina" />
+          </Key>
+          <Property Name="IdRolPagina" Type="Int32" Nullable="false" />
+          <Property Name="IdRol" Type="Int32" Nullable="false" />
+          <Property Name="IdPagina" Type="Int32" Nullable="false" />
+          <Property Name="BHabilitado" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TblUsuario">
+          <Key>
+            <PropertyRef Name="IdUsuario" />
+          </Key>
+          <Property Name="IdUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreUsuario" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Clave" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TipoUsuario" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="IdRol" Type="Int32" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -761,6 +849,7 @@ advertencia 6002: La tabla o vista 'DbAseguradora.dbo.TblMunicipio' no tiene def
           <EntitySetMapping Name="TblCliente">
             <EntityTypeMapping TypeName="DbAseguradoraModel.TblCliente">
               <MappingFragment StoreEntitySet="TblCliente">
+                <ScalarProperty Name="TieneUsuario" ColumnName="TieneUsuario" />
                 <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
                 <ScalarProperty Name="PrimerNombre" ColumnName="PrimerNombre" />
                 <ScalarProperty Name="SegundoNombre" ColumnName="SegundoNombre" />
@@ -899,6 +988,49 @@ advertencia 6002: La tabla o vista 'DbAseguradora.dbo.TblMunicipio' no tiene def
                 <ScalarProperty Name="Departamento" ColumnName="Departamento" />
                 <ScalarProperty Name="Municipio" ColumnName="Municipio" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblPagina">
+            <EntityTypeMapping TypeName="DbAseguradoraModel.TblPagina">
+              <MappingFragment StoreEntitySet="TblPagina">
+                <ScalarProperty Name="BHabilitado" ColumnName="BHabilitado" />
+                <ScalarProperty Name="Controlador" ColumnName="Controlador" />
+                <ScalarProperty Name="Accion" ColumnName="Accion" />
+                <ScalarProperty Name="Mensaje" ColumnName="Mensaje" />
+                <ScalarProperty Name="IdPagina" ColumnName="IdPagina" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblRol">
+            <EntityTypeMapping TypeName="DbAseguradoraModel.TblRol">
+              <MappingFragment StoreEntitySet="TblRol">
+                <ScalarProperty Name="BHabilitado" ColumnName="BHabilitado" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdRol" ColumnName="IdRol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblRolPagina">
+            <EntityTypeMapping TypeName="DbAseguradoraModel.TblRolPagina">
+              <MappingFragment StoreEntitySet="TblRolPagina">
+                <ScalarProperty Name="BHabilitado" ColumnName="BHabilitado" />
+                <ScalarProperty Name="IdPagina" ColumnName="IdPagina" />
+                <ScalarProperty Name="IdRol" ColumnName="IdRol" />
+                <ScalarProperty Name="IdRolPagina" ColumnName="IdRolPagina" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblUsuario">
+            <EntityTypeMapping TypeName="DbAseguradoraModel.TblUsuario">
+              <MappingFragment StoreEntitySet="TblUsuario">
+                <ScalarProperty Name="IdRol" ColumnName="IdRol" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TipoUsuario" ColumnName="TipoUsuario" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+                <ScalarProperty Name="NombreUsuario" ColumnName="NombreUsuario" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

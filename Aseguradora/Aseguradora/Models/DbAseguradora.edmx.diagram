@@ -30,6 +30,10 @@
         <AssociationConnector Association="DbAseguradoraModel.FK_TblVehiculoCliente_TblVehiculo1" ManuallyRouted="false" />
         <AssociationConnector Association="DbAseguradoraModel.FK_TblVehiculoCliente_TblProductoCliente" />
         <AssociationConnector Association="DbAseguradoraModel.FK_TblMovimientos_TblProductoCliente1" />
+        <EntityTypeShape EntityType="DbAseguradoraModel.TblPagina" Width="1.5" PointX="5.75" PointY="10.75" />
+        <EntityTypeShape EntityType="DbAseguradoraModel.TblRol" Width="1.5" PointX="0.75" PointY="11.75" />
+        <EntityTypeShape EntityType="DbAseguradoraModel.TblRolPagina" Width="1.5" PointX="2.75" PointY="11.75" />
+        <EntityTypeShape EntityType="DbAseguradoraModel.TblUsuario" Width="1.5" PointX="7.75" PointY="11.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
