@@ -72,6 +72,7 @@
     <Property Name="Documento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Valor" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
     <NavigationProperty Name="TblProductoCliente" Relationship="Self.FK_TblMovimientos_TblProductoCliente" FromRole="TblMovimientos" ToRole="TblProductoCliente" />
+    <NavigationProperty Name="TblProductoCliente1" Relationship="DbAseguradoraModel.FK_TblMovimientos_TblProductoCliente1" FromRole="TblMovimientos" ToRole="TblProductoCliente" />
   </EntityType>
   <EntityType Name="TblProducto">
     <Key>
@@ -103,6 +104,8 @@
     <NavigationProperty Name="TblFormaDePago" Relationship="Self.FK_TblProductoCliente_TblFormaDePago" FromRole="TblProductoCliente" ToRole="TblFormaDePago" />
     <NavigationProperty Name="TblMovimientos" Relationship="Self.FK_TblMovimientos_TblProductoCliente" FromRole="TblProductoCliente" ToRole="TblMovimientos" />
     <NavigationProperty Name="TblTipoProducto" Relationship="Self.FK_TblProductoCliente_TblTipoProducto" FromRole="TblProductoCliente" ToRole="TblTipoProducto" />
+    <NavigationProperty Name="TblVehiculoCliente" Relationship="DbAseguradoraModel.FK_TblVehiculoCliente_TblProductoCliente" FromRole="TblProductoCliente" ToRole="TblVehiculoCliente" />
+    <NavigationProperty Name="TblMovimientos1" Relationship="DbAseguradoraModel.FK_TblMovimientos_TblProductoCliente1" FromRole="TblProductoCliente" ToRole="TblMovimientos" />
   </EntityType>
   <EntityType Name="TblTipoProducto">
     <Key>
@@ -155,6 +158,8 @@
     <Property Name="Activo" Type="Boolean" Nullable="false" />
     <Property Name="Valor" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
     <NavigationProperty Name="TblVehiculo" Relationship="Self.FK_TblVehiculoCliente_TblVehiculo1" FromRole="TblVehiculoCliente" ToRole="TblVehiculo" />
+    <Property Name="IdProductoCliente" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="TblProductoCliente" Relationship="DbAseguradoraModel.FK_TblVehiculoCliente_TblProductoCliente" FromRole="TblVehiculoCliente" ToRole="TblProductoCliente" />
   </EntityType>
   <EntityType Name="TblDepartamento">
     <Key>
@@ -333,5 +338,37 @@
       <End Role="TblVehiculo" EntitySet="TblVehiculo" />
       <End Role="TblVehiculoCliente" EntitySet="TblVehiculoCliente" />
     </AssociationSet>
+    <AssociationSet Name="FK_TblVehiculoCliente_TblProductoCliente" Association="DbAseguradoraModel.FK_TblVehiculoCliente_TblProductoCliente">
+      <End Role="TblProductoCliente" EntitySet="TblProductoCliente" />
+      <End Role="TblVehiculoCliente" EntitySet="TblVehiculoCliente" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TblMovimientos_TblProductoCliente1" Association="DbAseguradoraModel.FK_TblMovimientos_TblProductoCliente1">
+      <End Role="TblProductoCliente" EntitySet="TblProductoCliente" />
+      <End Role="TblMovimientos" EntitySet="TblMovimientos" />
+    </AssociationSet>
   </EntityContainer>
+  <Association Name="FK_TblVehiculoCliente_TblProductoCliente">
+    <End Type="DbAseguradoraModel.TblProductoCliente" Role="TblProductoCliente" Multiplicity="1" />
+    <End Type="DbAseguradoraModel.TblVehiculoCliente" Role="TblVehiculoCliente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblProductoCliente">
+        <PropertyRef Name="IdProductoCliente" />
+      </Principal>
+      <Dependent Role="TblVehiculoCliente">
+        <PropertyRef Name="IdProductoCliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TblMovimientos_TblProductoCliente1">
+    <End Type="DbAseguradoraModel.TblProductoCliente" Role="TblProductoCliente" Multiplicity="1" />
+    <End Type="DbAseguradoraModel.TblMovimientos" Role="TblMovimientos" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="TblProductoCliente">
+        <PropertyRef Name="IdProductoCliente" />
+      </Principal>
+      <Dependent Role="TblMovimientos">
+        <PropertyRef Name="IdMovimiento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

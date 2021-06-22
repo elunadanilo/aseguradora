@@ -20,5 +20,6 @@ namespace Aseguradora.Models
         public decimal Valor { get; set; }
     
         public virtual TblProductoCliente TblProductoCliente { get; set; }
+        public virtual TblProductoCliente TblProductoCliente1 { get; set; }
     }
 }

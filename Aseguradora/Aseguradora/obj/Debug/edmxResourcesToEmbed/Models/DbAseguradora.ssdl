@@ -159,8 +159,9 @@ advertencia 6002: La tabla o vista 'DbAseguradora.dbo.TblMunicipio' no tiene def
     <Property Name="Anio" Type="int" Nullable="false" />
     <Property Name="Activo" Type="bit" Nullable="false" />
     <Property Name="Valor" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="IdProductoCliente" Type="int" Nullable="false" />
   </EntityType>
-  <Association Name="FK_TblMovimientos_TblProductoCliente">
+  <Association Name="FK_TblMovimientos_TblProductoCliente1">
     <End Role="TblProductoCliente" Type="Self.TblProductoCliente" Multiplicity="1" />
     <End Role="TblMovimientos" Type="Self.TblMovimientos" Multiplicity="*" />
     <ReferentialConstraint>
@@ -256,6 +257,18 @@ advertencia 6002: La tabla o vista 'DbAseguradora.dbo.TblMunicipio' no tiene def
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_TblVehiculoCliente_TblProductoCliente">
+    <End Role="TblProductoCliente" Type="Self.TblProductoCliente" Multiplicity="1" />
+    <End Role="TblVehiculoCliente" Type="Self.TblVehiculoCliente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblProductoCliente">
+        <PropertyRef Name="IdProductoCliente" />
+      </Principal>
+      <Dependent Role="TblVehiculoCliente">
+        <PropertyRef Name="IdProductoCliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_TblVehiculoCliente_TblVehiculo1">
     <End Role="TblVehiculo" Type="Self.TblVehiculo" Multiplicity="1" />
     <End Role="TblVehiculoCliente" Type="Self.TblVehiculoCliente" Multiplicity="*" />
@@ -294,7 +307,7 @@ advertencia 6002: La tabla o vista 'DbAseguradora.dbo.TblMunicipio' no tiene def
     [TblMunicipio].[Descripcion] AS [Descripcion]
     FROM [dbo].[TblMunicipio] AS [TblMunicipio]</DefiningQuery>
     </EntitySet>
-    <AssociationSet Name="FK_TblMovimientos_TblProductoCliente" Association="Self.FK_TblMovimientos_TblProductoCliente">
+    <AssociationSet Name="FK_TblMovimientos_TblProductoCliente1" Association="Self.FK_TblMovimientos_TblProductoCliente1">
       <End Role="TblProductoCliente" EntitySet="TblProductoCliente" />
       <End Role="TblMovimientos" EntitySet="TblMovimientos" />
     </AssociationSet>
@@ -325,6 +338,10 @@ advertencia 6002: La tabla o vista 'DbAseguradora.dbo.TblMunicipio' no tiene def
     <AssociationSet Name="FK_TblVehiculo_TblTipoVehiculo" Association="Self.FK_TblVehiculo_TblTipoVehiculo">
       <End Role="TblTipoVehiculo" EntitySet="TblTipoVehiculo" />
       <End Role="TblVehiculo" EntitySet="TblVehiculo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TblVehiculoCliente_TblProductoCliente" Association="Self.FK_TblVehiculoCliente_TblProductoCliente">
+      <End Role="TblProductoCliente" EntitySet="TblProductoCliente" />
+      <End Role="TblVehiculoCliente" EntitySet="TblVehiculoCliente" />
     </AssociationSet>
     <AssociationSet Name="FK_TblVehiculoCliente_TblVehiculo1" Association="Self.FK_TblVehiculoCliente_TblVehiculo1">
       <End Role="TblVehiculo" EntitySet="TblVehiculo" />

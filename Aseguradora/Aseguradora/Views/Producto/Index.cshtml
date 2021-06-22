@@ -6,53 +6,59 @@
 
 <h2>Listado de Productos</h2>
 <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item active" aria-current="page">@Html.ActionLink("Agregar Producto", "Add", "Producto", null, new { @class = "btn btn-primary" })</li>
-    </ol>
+    <ol class="breadcrumb"></ol>
 </nav>
 
 <br />
 
+<div class="table-responsive">
+    <table class="table table-bordered table-hover table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>
+                    @Html.LabelFor(p => Model[0].IdAseguradora)
+                </th>
+                <th>
+                    @Html.LabelFor(p => Model[0].IdProducto)
+                </th>
+                <th>
+                    @Html.LabelFor(p => Model[0].Descripcion)
+                </th>
+                <th>
+                    Operaciones
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdAseguradora)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IdProducto)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Descripcion)
+                    </td>
+                    <td>
+                        @Html.ActionLink(" ", "Edit", "Producto", new { id = item.IdProducto }, new { @class = "fas fa-edit btn btn-primary" })
+                        @*@Html.ActionLink(" ", "Delete", "Producto", new { id = item.IdProducto }, new { @class = "fas fa-trash-alt btn btn-danger" })*@
+                        <button type="button" onclick="mostrarPopup(@item.IdProducto)" class="fas fa-trash-alt btn btn-danger btn btn-danger" data-toggle="modal" data-target="#myModal"></button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 
-<table class="table table-bordered table-hover table-striped">
-    <thead class="thead-dark">
-        <tr>
-            <th>
-                @Html.LabelFor(p => Model[0].IdAseguradora)
-            </th>
-            <th>
-                @Html.LabelFor(p => Model[0].IdProducto)
-            </th>
-            <th>
-                @Html.LabelFor(p => Model[0].Descripcion)
-            </th>
-            <th>
-                Operaciones
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdAseguradora)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdProducto)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descripcion)
-            </td>
-            <td>
-                @Html.ActionLink(" ", "Edit", "Producto", new { id = item.IdProducto }, new { @class = "fas fa-edit btn btn-primary" })
-                @*@Html.ActionLink(" ", "Delete", "Producto", new { id = item.IdProducto }, new { @class = "fas fa-trash-alt btn btn-danger" })*@
-                <button type="button" onclick="mostrarPopup(@item.IdProducto)" class="fas fa-trash-alt btn btn-danger btn btn-danger" data-toggle="modal" data-target="#myModal"></button>
-            </td>
-        </tr>
-        }
-    </tbody>
-</table>
+<br />
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">@Html.ActionLink("Agregar Producto", "Add", "Producto", null, new { @class = "btn btn-primary" })</li>
+    </ol>
+</nav>
 @using (Html.BeginForm("Delete", "Producto", FormMethod.Post, new { @id = "frmEliminar" }))
 {
     @Html.Hidden("IdProducto");

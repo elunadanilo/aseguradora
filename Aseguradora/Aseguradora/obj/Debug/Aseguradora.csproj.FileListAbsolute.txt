@@ -132,3 +132,10 @@ C:\Users\elunadanilo\Documents\GitHub\aseguradora\Aseguradora\Aseguradora\obj\De
 C:\Users\elunadanilo\Documents\GitHub\aseguradora\Aseguradora\Aseguradora\obj\Debug\Aseguradora.dll
 C:\Users\elunadanilo\Documents\GitHub\aseguradora\Aseguradora\Aseguradora\obj\Debug\Aseguradora.pdb
 C:\Users\elunadanilo\Documents\GitHub\aseguradora\Aseguradora\Aseguradora\obj\Debug\Aseguradora.csprojAssemblyReference.cache
+C:\Users\elunadanilo\Documents\GitHub\aseguradora\Aseguradora\Aseguradora\bin\BouncyCastle.Crypto.dll
+C:\Users\elunadanilo\Documents\GitHub\aseguradora\Aseguradora\Aseguradora\bin\itextsharp.dll
+C:\Users\elunadanilo\Documents\GitHub\aseguradora\Aseguradora\Aseguradora\bin\itextsharp.xml
+C:\Users\elunadanilo\Documents\GitHub\aseguradora\Aseguradora\Aseguradora\bin\EPPlus.dll
+C:\Users\elunadanilo\Documents\GitHub\aseguradora\Aseguradora\Aseguradora\bin\Microsoft.IO.RecyclableMemoryStream.dll
+C:\Users\elunadanilo\Documents\GitHub\aseguradora\Aseguradora\Aseguradora\bin\EPPlus.xml
+C:\Users\elunadanilo\Documents\GitHub\aseguradora\Aseguradora\Aseguradora\bin\Microsoft.IO.RecyclableMemoryStream.xml

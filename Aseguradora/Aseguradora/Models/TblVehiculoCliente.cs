@@ -24,7 +24,9 @@ namespace Aseguradora.Models
         public int Anio { get; set; }
         public bool Activo { get; set; }
         public decimal Valor { get; set; }
+        public int IdProductoCliente { get; set; }
     
         public virtual TblVehiculo TblVehiculo { get; set; }
+        public virtual TblProductoCliente TblProductoCliente { get; set; }
     }
 }

@@ -18,6 +18,7 @@ namespace Aseguradora.Models
         public TblProductoCliente()
         {
             this.TblMovimientos = new HashSet<TblMovimientos>();
+            this.TblVehiculoCliente = new HashSet<TblVehiculoCliente>();
         }
     
         public int IdProductoCliente { get; set; }
@@ -38,5 +39,8 @@ namespace Aseguradora.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TblMovimientos> TblMovimientos { get; set; }
         public virtual TblTipoProducto TblTipoProducto { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TblVehiculoCliente> TblVehiculoCliente { get; set; }
+        public virtual TblMovimientos TblMovimientos1 { get; set; }
     }
 }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DbAseguradoraModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DbAseguradoraModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -164,8 +164,9 @@ advertencia 6002: La tabla o vista 'DbAseguradora.dbo.TblMunicipio' no tiene def
           <Property Name="Anio" Type="int" Nullable="false" />
           <Property Name="Activo" Type="bit" Nullable="false" />
           <Property Name="Valor" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="IdProductoCliente" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FK_TblMovimientos_TblProductoCliente">
+        <Association Name="FK_TblMovimientos_TblProductoCliente1">
           <End Role="TblProductoCliente" Type="Self.TblProductoCliente" Multiplicity="1" />
           <End Role="TblMovimientos" Type="Self.TblMovimientos" Multiplicity="*" />
           <ReferentialConstraint>
@@ -261,6 +262,18 @@ advertencia 6002: La tabla o vista 'DbAseguradora.dbo.TblMunicipio' no tiene def
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TblVehiculoCliente_TblProductoCliente">
+          <End Role="TblProductoCliente" Type="Self.TblProductoCliente" Multiplicity="1" />
+          <End Role="TblVehiculoCliente" Type="Self.TblVehiculoCliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblProductoCliente">
+              <PropertyRef Name="IdProductoCliente" />
+            </Principal>
+            <Dependent Role="TblVehiculoCliente">
+              <PropertyRef Name="IdProductoCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TblVehiculoCliente_TblVehiculo1">
           <End Role="TblVehiculo" Type="Self.TblVehiculo" Multiplicity="1" />
           <End Role="TblVehiculoCliente" Type="Self.TblVehiculoCliente" Multiplicity="*" />
@@ -299,7 +312,7 @@ advertencia 6002: La tabla o vista 'DbAseguradora.dbo.TblMunicipio' no tiene def
     [TblMunicipio].[Descripcion] AS [Descripcion]
     FROM [dbo].[TblMunicipio] AS [TblMunicipio]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK_TblMovimientos_TblProductoCliente" Association="Self.FK_TblMovimientos_TblProductoCliente">
+          <AssociationSet Name="FK_TblMovimientos_TblProductoCliente1" Association="Self.FK_TblMovimientos_TblProductoCliente1">
             <End Role="TblProductoCliente" EntitySet="TblProductoCliente" />
             <End Role="TblMovimientos" EntitySet="TblMovimientos" />
           </AssociationSet>
@@ -331,13 +344,16 @@ advertencia 6002: La tabla o vista 'DbAseguradora.dbo.TblMunicipio' no tiene def
             <End Role="TblTipoVehiculo" EntitySet="TblTipoVehiculo" />
             <End Role="TblVehiculo" EntitySet="TblVehiculo" />
           </AssociationSet>
+          <AssociationSet Name="FK_TblVehiculoCliente_TblProductoCliente" Association="Self.FK_TblVehiculoCliente_TblProductoCliente">
+            <End Role="TblProductoCliente" EntitySet="TblProductoCliente" />
+            <End Role="TblVehiculoCliente" EntitySet="TblVehiculoCliente" />
+          </AssociationSet>
           <AssociationSet Name="FK_TblVehiculoCliente_TblVehiculo1" Association="Self.FK_TblVehiculoCliente_TblVehiculo1">
             <End Role="TblVehiculo" EntitySet="TblVehiculo" />
             <End Role="TblVehiculoCliente" EntitySet="TblVehiculoCliente" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DbAseguradoraModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -413,6 +429,7 @@ advertencia 6002: La tabla o vista 'DbAseguradora.dbo.TblMunicipio' no tiene def
           <Property Name="Documento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Valor" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
           <NavigationProperty Name="TblProductoCliente" Relationship="Self.FK_TblMovimientos_TblProductoCliente" FromRole="TblMovimientos" ToRole="TblProductoCliente" />
+          <NavigationProperty Name="TblProductoCliente1" Relationship="DbAseguradoraModel.FK_TblMovimientos_TblProductoCliente1" FromRole="TblMovimientos" ToRole="TblProductoCliente" />
         </EntityType>
         <EntityType Name="TblProducto">
           <Key>
@@ -444,6 +461,8 @@ advertencia 6002: La tabla o vista 'DbAseguradora.dbo.TblMunicipio' no tiene def
           <NavigationProperty Name="TblFormaDePago" Relationship="Self.FK_TblProductoCliente_TblFormaDePago" FromRole="TblProductoCliente" ToRole="TblFormaDePago" />
           <NavigationProperty Name="TblMovimientos" Relationship="Self.FK_TblMovimientos_TblProductoCliente" FromRole="TblProductoCliente" ToRole="TblMovimientos" />
           <NavigationProperty Name="TblTipoProducto" Relationship="Self.FK_TblProductoCliente_TblTipoProducto" FromRole="TblProductoCliente" ToRole="TblTipoProducto" />
+          <NavigationProperty Name="TblVehiculoCliente" Relationship="DbAseguradoraModel.FK_TblVehiculoCliente_TblProductoCliente" FromRole="TblProductoCliente" ToRole="TblVehiculoCliente" />
+          <NavigationProperty Name="TblMovimientos1" Relationship="DbAseguradoraModel.FK_TblMovimientos_TblProductoCliente1" FromRole="TblProductoCliente" ToRole="TblMovimientos" />
         </EntityType>
         <EntityType Name="TblTipoProducto">
           <Key>
@@ -496,6 +515,8 @@ advertencia 6002: La tabla o vista 'DbAseguradora.dbo.TblMunicipio' no tiene def
           <Property Name="Activo" Type="Boolean" Nullable="false" />
           <Property Name="Valor" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
           <NavigationProperty Name="TblVehiculo" Relationship="Self.FK_TblVehiculoCliente_TblVehiculo1" FromRole="TblVehiculoCliente" ToRole="TblVehiculo" />
+          <Property Name="IdProductoCliente" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TblProductoCliente" Relationship="DbAseguradoraModel.FK_TblVehiculoCliente_TblProductoCliente" FromRole="TblVehiculoCliente" ToRole="TblProductoCliente" />
         </EntityType>
         <EntityType Name="TblDepartamento">
           <Key>
@@ -674,7 +695,39 @@ advertencia 6002: La tabla o vista 'DbAseguradora.dbo.TblMunicipio' no tiene def
             <End Role="TblVehiculo" EntitySet="TblVehiculo" />
             <End Role="TblVehiculoCliente" EntitySet="TblVehiculoCliente" />
           </AssociationSet>
+          <AssociationSet Name="FK_TblVehiculoCliente_TblProductoCliente" Association="DbAseguradoraModel.FK_TblVehiculoCliente_TblProductoCliente">
+            <End Role="TblProductoCliente" EntitySet="TblProductoCliente" />
+            <End Role="TblVehiculoCliente" EntitySet="TblVehiculoCliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblMovimientos_TblProductoCliente1" Association="DbAseguradoraModel.FK_TblMovimientos_TblProductoCliente1">
+            <End Role="TblProductoCliente" EntitySet="TblProductoCliente" />
+            <End Role="TblMovimientos" EntitySet="TblMovimientos" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_TblVehiculoCliente_TblProductoCliente">
+          <End Type="DbAseguradoraModel.TblProductoCliente" Role="TblProductoCliente" Multiplicity="1" />
+          <End Type="DbAseguradoraModel.TblVehiculoCliente" Role="TblVehiculoCliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblProductoCliente">
+              <PropertyRef Name="IdProductoCliente" />
+            </Principal>
+            <Dependent Role="TblVehiculoCliente">
+              <PropertyRef Name="IdProductoCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblMovimientos_TblProductoCliente1">
+          <End Type="DbAseguradoraModel.TblProductoCliente" Role="TblProductoCliente" Multiplicity="1" />
+          <End Type="DbAseguradoraModel.TblMovimientos" Role="TblMovimientos" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="TblProductoCliente">
+              <PropertyRef Name="IdProductoCliente" />
+            </Principal>
+            <Dependent Role="TblMovimientos">
+              <PropertyRef Name="IdMovimiento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -818,6 +871,7 @@ advertencia 6002: La tabla o vista 'DbAseguradora.dbo.TblMunicipio' no tiene def
           <EntitySetMapping Name="TblVehiculoCliente">
             <EntityTypeMapping TypeName="DbAseguradoraModel.TblVehiculoCliente">
               <MappingFragment StoreEntitySet="TblVehiculoCliente">
+                <ScalarProperty Name="IdProductoCliente" ColumnName="IdProductoCliente" />
                 <ScalarProperty Name="IdVehiculoCliente" ColumnName="IdVehiculoCliente" />
                 <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
                 <ScalarProperty Name="IdVehiculo" ColumnName="IdVehiculo" />

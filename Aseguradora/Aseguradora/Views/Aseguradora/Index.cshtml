@@ -7,7 +7,8 @@
 <h2>Listado de Aseguradoras</h2>
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        
+        <li class="breadcrumb-item active" aria-current="page">@Html.ActionLink("PDF", "generarPdf", "Aseguradora", null, new { @class = "btn btn-primary", @target = "_blank" })</li>
+        <li class="breadcrumb-item active" aria-current="page">@Html.ActionLink("XLSX", "generarExcel", "Aseguradora", null, new { @class = "btn btn-primary", @target = "_blank" })</li>
     </ol>
 </nav>
 <br />

@@ -138,6 +138,7 @@
     <EntitySetMapping Name="TblVehiculoCliente">
       <EntityTypeMapping TypeName="DbAseguradoraModel.TblVehiculoCliente">
         <MappingFragment StoreEntitySet="TblVehiculoCliente">
+          <ScalarProperty Name="IdProductoCliente" ColumnName="IdProductoCliente" />
           <ScalarProperty Name="IdVehiculoCliente" ColumnName="IdVehiculoCliente" />
           <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
           <ScalarProperty Name="IdVehiculo" ColumnName="IdVehiculo" />
