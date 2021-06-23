@@ -1,7 +1,92 @@
-﻿
+﻿@model List<Aseguradora.Models.PaginaModel>
+
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
+<!-- Button trigger modal -->
+<button type="button" onclick="Agregar()" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Agregar
+</button>
+<p>
+    @using (Ajax.BeginForm("Filtrar", "", new AjaxOptions
+    {
+        HttpMethod = "POST",
+        UpdateTargetId = "divPagina",
+        InsertionMode = InsertionMode.Replace
+    }, new { @id = "FrmFiltrado" }))
+    {
+        @Html.Label("Ingrese mensaje")
+        @Html.TextBox("Mensaje")
+        <input type="submit" value="Buscar" class="btn btn-primary" />
+        <div id="divPagina">
+            @Html.Partial("_TablaPagina", Model)
+        </div>
+    }
+</p>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            @using (Ajax.BeginForm("Save", "Pagina", null, new AjaxOptions
+            {
+                HttpMethod = "POST",
+                UpdateTargetId = "divRol",
+                InsertionMode = InsertionMode.Replace,
+                OnSuccess = "Guardar"
+            }))
+            {
+                @Html.Hidden("Titulo")
+                <div class="modal-body">
+                    <div>
+                        @Html.Label("Id Pagina")
+                        @Html.TextBox("IdPagina", null, new { @class = "form-control", @readOnly = true })
+                    </div>
+                    <div>
+                        @Html.Label("Mensaje")
+                        @Html.TextBox("Mensaje", null, new { @class = "form-control" })
+                    </div>
+                    <div>
+                        @Html.Label("Accion")
+                        @Html.TextBox("Accion", null, new { @class = "form-control" })
+                    </div>
+                    <div>
+                        @Html.Label("Controlador")
+                        @Html.TextBox("Controlador", null, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="BtnClose" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<script>
+    var FrmFiltrado = document.getElementById("FrmFiltrado");
+    FrmFiltrado.onsubmit = function () {
+        $("#FrmFiltrado").trigger("submit");
+    }
 
+    function Agregar() {
+        document.getElementById("Titulo").value = 1;
+    }
+
+    function Guardar(resultado) {
+        if (resultado == 1) {
+            $("#FrmFiltrado").trigger("submit");
+            document.getElementById("BtnClose").click();
+            alert("Guardado");
+        } else {
+            alert("Error");
+        }
+    }
+</script>

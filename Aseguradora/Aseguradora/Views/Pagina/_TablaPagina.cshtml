@@ -1,0 +1,38 @@
+﻿@model List<Aseguradora.Models.PaginaModel>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.LabelFor(model => Model[0].IdPagina)
+        </th>
+        <th>
+            @Html.LabelFor(model => Model[0].Mensaje)
+        </th>
+        <th>
+            @Html.LabelFor(model => Model[0].Accion)
+        </th>
+        <th>
+            @Html.LabelFor(model => Model[0].Controlador)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdPagina)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mensaje)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Accion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Controlador)
+            </td>
+        </tr>
+    }
+
+</table>
+
