@@ -58,5 +58,23 @@ namespace Aseguradora.Controllers
             }
             return PartialView("_TablaRol",listaRol);
         }
+
+        public int Save(RolModel oRolModel, int Titulo)
+        {
+            int rpta = 0;
+            using (var bd = new DbAseguradoraEntities())
+            {
+                if (Titulo.Equals(1))
+                {
+                    TblRol oRol = new TblRol();
+                    oRol.Nombre = oRolModel.Nombre;
+                    oRol.Descripcion = oRolModel.Descripcion;
+                    oRol.BHabilitado = 1;
+                    bd.TblRol.Add(oRol);
+                    rpta=bd.SaveChanges();
+                }
+            }
+                return rpta;
+        }
     }
 }
