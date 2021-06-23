@@ -153,6 +153,7 @@
     <Compile Include="Controllers\PaginaController.cs" />
     <Compile Include="Controllers\ProductoController.cs" />
     <Compile Include="Controllers\RolController.cs" />
+    <Compile Include="Controllers\RolPaginaController.cs" />
     <Compile Include="Controllers\TipoProductoController.cs" />
     <Compile Include="Controllers\TipoVehiculoController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
@@ -197,6 +198,7 @@
     <Compile Include="Models\ProductoClienteModel.cs" />
     <Compile Include="Models\ProductoModel.cs" />
     <Compile Include="Models\RolModel.cs" />
+    <Compile Include="Models\RolPaginaModel.cs" />
     <Compile Include="Models\sysdiagrams.cs">
       <DependentUpon>DbAseguradora.tt</DependentUpon>
     </Compile>
@@ -2153,6 +2155,8 @@
     <Content Include="Views\Rol\_TablaRol.cshtml" />
     <Content Include="Views\Pagina\Index.cshtml" />
     <Content Include="Views\Pagina\_TablaPagina.cshtml" />
+    <Content Include="Views\RolPagina\Index.cshtml" />
+    <Content Include="Views\RolPagina\_TablaRolPagina.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,21 @@
+﻿
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <td>@Html.LabelFor(p => Model[0].IdRolPagina)</td>
+            <td>@Html.LabelFor(p => Model[0].nombreRol)</td>
+            <td>@Html.LabelFor(p => Model[0].nombreMensaje)</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.IdRolPagina</td>
+                <td>@item.nombreRol</td>
+                <td>@item.nombreMensaje</td>
+            </tr>
+        }
+    </tbody>
+</table>
