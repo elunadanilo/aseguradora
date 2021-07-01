@@ -19,7 +19,6 @@
     {
         @Html.Label("Ingrese mensaje")
         @Html.TextBox("Mensaje")
-        <input type="submit" value="Buscar" class="btn btn-primary" />
         <div id="divPagina">
             @Html.Partial("_TablaPagina", Model)
         </div>
@@ -38,17 +37,13 @@
             @using (Ajax.BeginForm("Save", "Pagina", null, new AjaxOptions
             {
                 HttpMethod = "POST",
-                UpdateTargetId = "divRol",
+                OnSuccess = "Guardar",
                 InsertionMode = InsertionMode.Replace,
-                OnSuccess = "Guardar"
+                UpdateTargetId = "divError"
             }))
             {
                 @Html.Hidden("Titulo")
                 <div class="modal-body">
-                    <div>
-                        @Html.Label("Id Pagina")
-                        @Html.TextBox("IdPagina", null, new { @class = "form-control", @readOnly = true })
-                    </div>
                     <div>
                         @Html.Label("Mensaje")
                         @Html.TextBox("Mensaje", null, new { @class = "form-control" })
@@ -66,27 +61,54 @@
                     <button type="button" id="BtnClose" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Save changes</button>
                 </div>
+                <div id="divError"></div>
             }
         </div>
     </div>
 </div>
 <script>
     var FrmFiltrado = document.getElementById("FrmFiltrado");
-    FrmFiltrado.onsubmit = function () {
+    var mensaje = document.getElementById("Mensaje");
+    mensaje.onkeyup = function () {
         $("#FrmFiltrado").trigger("submit");
     }
 
+    //FrmFiltrado.onsubmit = function () {
+    //    $("#FrmFiltrado").trigger("submit");
+    //}
+
+    function Eliminar(iidpagina) {
+        document.getElementById("titulo").value = iidpagina;
+    }
+
     function Agregar() {
+        Limpiar();
         document.getElementById("Titulo").value = 1;
     }
 
+    function Limpiar() {
+        var controles = document.getElementsByClassName("form-control");
+        var control;
+        for (var i = 0; i < controles.length; i++) {
+            control = controles[i];
+            control.value = "";
+
+        }
+
+    }
+
     function Guardar(resultado) {
-        if (resultado == 1) {
+        if (resultado == "1" || resultado == "0") {
             $("#FrmFiltrado").trigger("submit");
             document.getElementById("BtnClose").click();
-            alert("Guardado");
+            alert("Se ejecuto correctamente");
         } else {
-            alert("Error");
+            if (result == -1) {
+                alert("Ya existe en la base de datos");
+                document.getElementById("divError").innerHTML = "";
+            } else {
+                alert("Ocurrio un error");
+            }
         }
     }
 </script>
